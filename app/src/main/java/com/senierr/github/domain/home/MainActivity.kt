@@ -1,16 +1,32 @@
-package com.senierr.github.domain
+package com.senierr.github.domain.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import com.senierr.base.support.ext.observeOnMain
 import com.senierr.base.support.ext.setOnThrottleClickListener
 import com.senierr.base.support.ext.subscribeOnIO
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.base.support.utils.LogUtil
 import com.senierr.github.R
+import com.senierr.github.domain.account.view.LoginActivity
 import com.senierr.repository.service.impl.UserService
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * 登录页面
+ *
+ * @author zhouchunjie
+ * @date 2019/7/6
+ */
 class MainActivity : BaseActivity() {
+
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
 
     val githubService = UserService()
 

@@ -1,4 +1,4 @@
-package com.senierr.github.domain.account
+package com.senierr.github.domain.account.contract
 
 import android.content.Context
 import com.senierr.base.support.mvp.BasePresenter
@@ -15,6 +15,8 @@ interface LoginContract {
     interface View: BaseView {
         fun getAccount(): String?
         fun getPassword(): String?
+        fun showAccountEmpty()
+        fun showPasswordEmpty()
         fun showLoginSuccess()
         fun showLoginFailure(e: Throwable)
     }

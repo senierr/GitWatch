@@ -4,7 +4,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'
@@ -18,7 +17,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -33,7 +32,7 @@ ext {
     applicationId = "com.senierr.github"
 
     compileSdkVersion = 28
-    minSdkVersion = 16
+    minSdkVersion = 21
     targetSdkVersion = 28
 
     versionCode = 1
@@ -54,4 +53,5 @@ ext {
     glide = "4.9.0"
     photoview = "1.4.1"
     disklrucache = "2.0.2"
+    StateButton = "v1.0.0"
 }

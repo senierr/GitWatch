@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @author zhouchunjie
  * @date 2019/7/5 22:09
  */
-data class Error(
+data class GithubError(
     @SerializedName("message")
-    var errorMsg: String? = ""
+    var errorMsg: String = ""
 ) : Exception()

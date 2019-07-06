@@ -22,11 +22,11 @@
 		</activity>
 
 		<activity
-			android:name=".domain.MainActivity"
+			android:name=".domain.home.MainActivity"
 			android:screenOrientation="portrait"/>
 
 		<activity
-			android:name=".domain.account.LoginActivity"
+			android:name=".domain.account.view.LoginActivity"
 			android:screenOrientation="portrait"/>
 
 	</application>

@@ -10,79 +10,79 @@ import com.google.gson.annotations.SerializedName
  */
 data class UserInfo(
     @SerializedName("avatar_url")
-    var avatarUrl: String? = "",
+    var avatarUrl: String = "",
     @SerializedName("bio")
-    var bio: String? = "",
+    var bio: String = "",
     @SerializedName("blog")
-    var blog: String? = "",
+    var blog: String = "",
     @SerializedName("collaborators")
-    var collaborators: Int? = 0,
+    var collaborators: Int = 0,
     @SerializedName("company")
-    var company: String? = "",
+    var company: String = "",
     @SerializedName("created_at")
-    var createdAt: String? = "",
+    var createdAt: String = "",
     @SerializedName("disk_usage")
-    var diskUsage: Int? = 0,
+    var diskUsage: Int = 0,
     @SerializedName("email")
-    var email: String? = "",
+    var email: String = "",
     @SerializedName("events_url")
-    var eventsUrl: String? = "",
+    var eventsUrl: String = "",
     @SerializedName("followers")
-    var followers: Int? = 0,
+    var followers: Int = 0,
     @SerializedName("followers_url")
-    var followersUrl: String? = "",
+    var followersUrl: String = "",
     @SerializedName("following")
-    var following: Int? = 0,
+    var following: Int = 0,
     @SerializedName("following_url")
-    var followingUrl: String? = "",
+    var followingUrl: String = "",
     @SerializedName("gists_url")
-    var gistsUrl: String? = "",
+    var gistsUrl: String = "",
     @SerializedName("gravatar_id")
-    var gravatarId: String? = "",
+    var gravatarId: String = "",
     @SerializedName("hireable")
-    var hireable: Any? = Any(),
+    var hireable: Any = Any(),
     @SerializedName("html_url")
-    var htmlUrl: String? = "",
+    var htmlUrl: String = "",
     @SerializedName("id")
-    var id: Int? = 0,
+    var id: Int = 0,
     @SerializedName("location")
-    var location: Any? = Any(),
+    var location: Any = Any(),
     @SerializedName("login")
-    var login: String? = "",
+    var login: String = "",
     @SerializedName("name")
-    var name: String? = "",
+    var name: String = "",
     @SerializedName("node_id")
-    var nodeId: String? = "",
+    var nodeId: String = "",
     @SerializedName("organizations_url")
-    var organizationsUrl: String? = "",
+    var organizationsUrl: String = "",
     @SerializedName("owned_private_repos")
-    var ownedPrivateRepos: Int? = 0,
+    var ownedPrivateRepos: Int = 0,
     @SerializedName("plan")
-    var plan: Plan? = Plan(),
+    var plan: Plan = Plan(),
     @SerializedName("private_gists")
-    var privateGists: Int? = 0,
+    var privateGists: Int = 0,
     @SerializedName("public_gists")
-    var publicGists: Int? = 0,
+    var publicGists: Int = 0,
     @SerializedName("public_repos")
-    var publicRepos: Int? = 0,
+    var publicRepos: Int = 0,
     @SerializedName("received_events_url")
-    var receivedEventsUrl: String? = "",
+    var receivedEventsUrl: String = "",
     @SerializedName("repos_url")
-    var reposUrl: String? = "",
+    var reposUrl: String = "",
     @SerializedName("site_admin")
-    var siteAdmin: Boolean? = false,
+    var siteAdmin: Boolean = false,
     @SerializedName("starred_url")
-    var starredUrl: String? = "",
+    var starredUrl: String = "",
     @SerializedName("subscriptions_url")
-    var subscriptionsUrl: String? = "",
+    var subscriptionsUrl: String = "",
     @SerializedName("total_private_repos")
-    var totalPrivateRepos: Int? = 0,
+    var totalPrivateRepos: Int = 0,
     @SerializedName("two_factor_authentication")
-    var twoFactorAuthentication: Boolean? = false,
+    var twoFactorAuthentication: Boolean = false,
     @SerializedName("type")
-    var type: String? = "",
+    var type: String = "",
     @SerializedName("updated_at")
-    var updatedAt: String? = "",
+    var updatedAt: String = "",
     @SerializedName("url")
-    var url: String? = ""
+    var url: String = ""
 )

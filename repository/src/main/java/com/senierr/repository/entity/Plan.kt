@@ -10,11 +10,11 @@ import com.google.gson.annotations.SerializedName
  */
 data class Plan(
     @SerializedName("collaborators")
-    var collaborators: Int? = 0,
+    var collaborators: Int = 0,
     @SerializedName("name")
-    var name: String? = "",
+    var name: String = "",
     @SerializedName("private_repos")
-    var privateRepos: Int? = 0,
+    var privateRepos: Int = 0,
     @SerializedName("space")
-    var space: Int? = 0
+    var space: Int = 0
 )

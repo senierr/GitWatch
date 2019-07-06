@@ -26,7 +26,7 @@ abstract class BaseApplication : Application() {
 
         // 初始化RxJava
         RxJavaPlugins.setErrorHandler {
-            LogUtil.logE(Log.getStackTraceString(it))
+            LogUtil.logW(Log.getStackTraceString(it))
         }
     }
 }

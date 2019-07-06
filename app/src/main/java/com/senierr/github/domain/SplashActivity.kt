@@ -3,8 +3,9 @@ package com.senierr.github.domain
 import android.content.Intent
 import android.os.Bundle
 import com.senierr.base.support.ui.BaseActivity
-import com.senierr.base.support.utils.LogUtil
 import com.senierr.github.R
+import com.senierr.github.domain.account.view.LoginActivity
+import com.senierr.github.domain.home.MainActivity
 import com.senierr.repository.Repository
 import com.senierr.repository.service.api.IUserService
 import io.reactivex.Observable
@@ -12,6 +13,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
+/**
+ * 引导页面
+ *
+ * @author zhouchunjie
+ * @date 2019/7/6
+ */
 class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,22 +32,13 @@ class SplashActivity : BaseActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    LogUtil.logE("Authorization: $it")
                     // 已登录，跳转
-                    startActivity(Intent(this, MainActivity::class.java))
-//                    if (it) {
-//                        // 已登录，跳转
-//                        startActivity(Intent(this, MainActivity::class.java))
-//                    } else {
-//                        // 未登录，跳转登录页
-//                        val intent = Intent(this, LoginActivity::class.java)
-//                        val targetIntent = Intent(this, MainActivity::class.java)
-//                        intent.putExtra(LoginActivity.EXTRA_TARGET_INTENT, targetIntent)
-//                        startActivity(intent)
-//                    }
+                    MainActivity.start(this)
                     finish()
                 }, {
-
+                    val targetIntent = Intent(this, MainActivity::class.java)
+                    LoginActivity.start(this, targetIntent)
+                    finish()
                 })
                 .bindToLifecycle()
     }
