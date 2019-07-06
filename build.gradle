@@ -47,6 +47,7 @@ ext {
     rxandroid = "2.1.1"
     rxjava = "2.1.10"
     rxHttp = "1.2.0"
+    room = "1.1.1"
     gson = "2.8.2"
     multitype = "1.0.1"
     permission = "1.1.0"

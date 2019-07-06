@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">@color/color_008577</color>
+    <color name="colorPrimaryDark">@color/color_00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <!--<color name="text_white">#ffffff</color>-->
+    <!--<color name="text_title">#333333</color>-->
+    <!--<color name="text_link">#477aac</color>-->
+    <!--<color name="text_normal">#666666</color>-->
+    <!--<color name="text_sub">#888888</color>-->
+    <!--<color name="text_sub_sub">#999999</color>-->
+    <!--<color name="text_sub_sub_sub">#b2b2b2</color>-->
+    <!--<color name="text_error">#ce3d3a</color>-->
+
+    <!--<color name="bg_content_white">#fafbfc</color>-->
+    <!--<color name="bg_content_grey">#F4F6F9</color>-->
+
+    <!--<color name="bg_divider">#cdcdcd</color>-->
+
+    <color name="color_00574B">#00574B</color>
+    <color name="color_008577">#008577</color>
+    <color name="color_4DB6AC">#4DB6AC</color>
+    <color name="color_FAFBFC">#FAFBFC</color>
+    <color name="color_888888">#888888</color>
 </resources>

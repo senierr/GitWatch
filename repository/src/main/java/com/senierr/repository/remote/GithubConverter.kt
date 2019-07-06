@@ -1,8 +1,8 @@
 package com.senierr.repository.remote
 
 import com.google.gson.Gson
-import com.senierr.repository.entity.Error
 import com.senierr.http.converter.Converter
+import com.senierr.repository.entity.Error
 import okhttp3.Response
 
 /**
@@ -15,8 +15,7 @@ class GithubConverter<T>(private val clazz: Class<T>) : Converter<T> {
 
     override fun convertResponse(response: Response): T {
         if (!response.isSuccessful) {
-            val error = Gson().fromJson<Error>(response.body()?.string(), Error::class.java)
-            throw Exception(error.message)
+            throw Gson().fromJson(response.body()?.string(), Error::class.java)
         }
         return Gson().fromJson<T>(response.body()?.string(), clazz)
     }

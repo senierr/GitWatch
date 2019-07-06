@@ -18,7 +18,7 @@ data class UserInfo(
     @SerializedName("collaborators")
     var collaborators: Int? = 0,
     @SerializedName("company")
-    var company: Any? = Any(),
+    var company: String? = "",
     @SerializedName("created_at")
     var createdAt: String? = "",
     @SerializedName("disk_usage")
