@@ -1,5 +1,9 @@
 package com.senierr.base.support.mvp
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.OnLifecycleEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.ConcurrentHashMap
@@ -10,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @author zhouchunjie
  * @date 2019/5/30 11:42
  */
-abstract class BasePresenter<V: BaseView> {
+abstract class BasePresenter<V: BaseView> : LifecycleObserver {
 
     // 无标签订阅集
     private val compositeDisposable = CompositeDisposable()
@@ -19,19 +23,18 @@ abstract class BasePresenter<V: BaseView> {
 
     protected var view: V? = null
 
-    /**
-     * 绑定视图
-     */
-    fun onAttach(view: V) {
-        this.view = view
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    protected open fun onDestroy() {
+        disposeAll()
+        view = null
     }
 
     /**
-     * 解除绑定视图
+     * 绑定至生命感知组件
      */
-    fun onDetach() {
-        disposeAll()
-        view = null
+    fun bindToLifecycleOwner(lifecycleOwner: LifecycleOwner, view: V) {
+        this.view = view
+        lifecycleOwner.lifecycle.addObserver(this)
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.senierr.github.domain.account.presenter
 
 import android.content.Context
-import android.text.TextUtils
 import com.senierr.base.support.ext.observeOnMain
 import com.senierr.base.support.ext.subscribeOnIO
 import com.senierr.github.domain.account.contract.LoginContract
@@ -22,25 +21,23 @@ class LoginPresenter : LoginContract.Presenter() {
         val account = view?.getAccount()
         val password = view?.getPassword()
 
-        if (TextUtils.isEmpty(account)) {
+        if (account.isNullOrBlank()) {
             view?.showAccountEmpty()
             return
         }
-        if (TextUtils.isEmpty(password)) {
+        if (password.isNullOrBlank()) {
             view?.showPasswordEmpty()
             return
         }
 
-        if (account != null && password != null) {
-            userService.login(account, password)
-                .subscribeOnIO()
-                .observeOnMain()
-                .subscribe({
-                    view?.showLoginSuccess()
-                }, {
-                    view?.showLoginFailure(it)
-                })
-                .bindToLifecycle()
-        }
+        userService.login(account, password)
+            .subscribeOnIO()
+            .observeOnMain()
+            .subscribe({
+                view?.showLoginSuccess()
+            }, {
+                view?.showLoginFailure(it)
+            })
+            .bindToLifecycle()
     }
 }

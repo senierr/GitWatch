@@ -5,7 +5,7 @@ import com.senierr.base.support.mvp.BasePresenter
 import com.senierr.base.support.mvp.BaseView
 
 /**
- * 版本升级契约类
+ * 登录契约类
  *
  * @author zhouchunjie
  * @date 2019/6/27

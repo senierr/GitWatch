@@ -48,23 +48,16 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginPresenter.onAttach(this)
-        initViews()
-    }
+        loginPresenter.bindToLifecycleOwner(this, this)
 
-    override fun onDestroy() {
-        loginPresenter.onDetach()
-        super.onDestroy()
+        initView()
     }
 
     override fun onBackPressed() {
         doFinish(false)
     }
 
-    /**
-     * 初始化界面
-     */
-    private fun initViews() {
+    private fun initView() {
         setSupportActionBar(tb_top)
         tb_top?.setNavigationOnClickListener {
             onBackPressed()
