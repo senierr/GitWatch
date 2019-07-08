@@ -1,9 +1,8 @@
-package com.senierr.github.domain.account.presenter
+package com.senierr.github.domain.account
 
 import android.content.Context
 import com.senierr.base.support.ext.observeOnMain
 import com.senierr.base.support.ext.subscribeOnIO
-import com.senierr.github.domain.account.contract.LoginContract
 import com.senierr.repository.Repository
 import com.senierr.repository.service.api.IUserService
 

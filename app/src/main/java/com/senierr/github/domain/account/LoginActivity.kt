@@ -1,4 +1,4 @@
-package com.senierr.github.domain.account.view
+package com.senierr.github.domain.account
 
 import android.content.Context
 import android.content.Intent
@@ -9,8 +9,6 @@ import com.senierr.base.support.ui.BaseActivity
 import com.senierr.base.support.utils.KeyboardUtil
 import com.senierr.base.support.utils.ToastUtil
 import com.senierr.github.R
-import com.senierr.github.domain.account.contract.LoginContract
-import com.senierr.github.domain.account.presenter.LoginPresenter
 import com.senierr.github.widget.CircularAnim
 import com.senierr.repository.remote.entity.Error
 import kotlinx.android.synthetic.main.activity_login.*
@@ -117,6 +115,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
             ToastUtil.showLong(this, R.string.network_error)
         }
         btn_login?.isClickable = true
+        btn_login?.setText(R.string.login)
     }
 
     /**

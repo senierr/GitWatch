@@ -9,29 +9,39 @@ import com.alibaba.fastjson.annotation.JSONField
  */
 data class Event(
     @JSONField(name = "public")
-    val publicity: Boolean = false,
-    val actor: Actor = Actor(),
+    var publicity: Boolean? = null,
+    @JSONField(name = "actor")
+    var actor: Actor? = null,
     @JSONField(name = "created_at")
-    val createdAt: String = "",
-    val id: String = "",
-    val repo: Repo = Repo(),
-    val type: String = ""
+    var createdAt: String? = null,
+    @JSONField(name = "id")
+    var id: String? = null,
+    @JSONField(name = "repo")
+    var repo: Repo? = null,
+    @JSONField(name = "type")
+    var type: String? = null
 )
 
 data class Actor(
     @JSONField(name = "avatar_url")
-    val avatarUrl: String = "",
+    var avatarUrl: String? = null,
     @JSONField(name = "display_login")
-    val displayLogin: String = "",
+    var displayLogin: String? = null,
     @JSONField(name = "gravatar_id")
-    val gravatarId: String = "",
-    val id: Int = 0,
-    val login: String = "",
-    val url: String = ""
+    var gravatarId: String? = null,
+    @JSONField(name = "id")
+    var id: Int? = null,
+    @JSONField(name = "login")
+    var login: String? = null,
+    @JSONField(name = "url")
+    var url: String? = null
 )
 
 data class Repo(
-    val id: Int = 0,
-    val name: String = "",
-    val url: String = ""
+    @JSONField(name = "id")
+    var id: Int? = null,
+    @JSONField(name = "name")
+    var name: String? = null,
+    @JSONField(name = "url")
+    var url: String? = null
 )

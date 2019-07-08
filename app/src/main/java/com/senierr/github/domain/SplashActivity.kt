@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.github.R
-import com.senierr.github.domain.account.view.LoginActivity
+import com.senierr.github.domain.account.LoginActivity
 import com.senierr.github.domain.home.MainActivity
 import com.senierr.repository.Repository
 import com.senierr.repository.service.api.IUserService

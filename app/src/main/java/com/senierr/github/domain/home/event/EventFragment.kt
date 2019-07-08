@@ -1,0 +1,58 @@
+package com.senierr.github.domain.home.event
+
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.senierr.base.support.ui.BaseFragment
+import com.senierr.github.R
+import com.senierr.repository.remote.entity.Event
+import kotlinx.android.synthetic.main.fragment_event.*
+
+/**
+ * 事件页面
+ *
+ * @author zhouchunjie
+ * @date 2019/7/8 21:21
+ */
+class EventFragment : BaseFragment(), EventContract.View {
+
+    private val eventPresenter = EventPresenter()
+    private var pageIndex = 1
+    private var pageSize = 10
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_event, container, false)
+    }
+
+    override fun onLazyCreated() {
+        super.onLazyCreated()
+        eventPresenter.onAttach(this)
+        eventPresenter.getEvents(pageIndex, pageSize)
+    }
+
+    private fun initView() {
+        rv_event?.layoutManager = LinearLayoutManager(context)
+        rv_event
+    }
+
+    override fun onDestroyView() {
+        eventPresenter.onDetach()
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        eventPresenter.onDetach()
+        super.onDestroy()
+    }
+
+    override fun showGetEventsSuccess(data: MutableList<Event>) {
+
+    }
+
+    override fun showGetEventsFailure(e: Throwable) {
+
+    }
+
+}

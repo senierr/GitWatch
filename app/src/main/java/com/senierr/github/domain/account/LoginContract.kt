@@ -1,4 +1,4 @@
-package com.senierr.github.domain.account.contract
+package com.senierr.github.domain.account
 
 import android.content.Context
 import com.senierr.base.support.mvp.BasePresenter
@@ -12,7 +12,7 @@ import com.senierr.base.support.mvp.BaseView
  */
 interface LoginContract {
 
-    interface View: BaseView {
+    interface View : BaseView {
         fun getAccount(): String?
         fun getPassword(): String?
         fun showAccountEmpty()
@@ -21,7 +21,7 @@ interface LoginContract {
         fun showLoginFailure(e: Throwable)
     }
 
-    abstract class Presenter: BasePresenter<View>() {
+    abstract class Presenter : BasePresenter<View>() {
         abstract fun login(context: Context)
     }
 }
