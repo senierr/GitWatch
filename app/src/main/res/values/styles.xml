@@ -14,7 +14,6 @@
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp_48</item>
-        <item name="navigationIcon">@drawable/ic_allow_back_white</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:minHeight">@dimen/dp_48</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
@@ -71,6 +70,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:minWidth">@dimen/dp_0</item>
         <item name="android:minHeight">@dimen/dp_0</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
     <!-- 黑色背景主题 -->

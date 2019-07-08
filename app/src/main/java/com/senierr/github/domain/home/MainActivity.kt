@@ -3,16 +3,15 @@ package com.senierr.github.domain.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import com.senierr.base.support.ext.observeOnMain
-import com.senierr.base.support.ext.setOnThrottleClickListener
 import com.senierr.base.support.ext.subscribeOnIO
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.base.support.utils.LogUtil
 import com.senierr.github.R
-import com.senierr.github.domain.account.view.LoginActivity
-import com.senierr.repository.service.impl.UserService
-import kotlinx.android.synthetic.main.activity_main.*
+import com.senierr.repository.Repository
+import com.senierr.repository.service.api.IUserService
+import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
 
 /**
  * 登录页面
@@ -28,35 +27,24 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    val githubService = UserService()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        githubService.getCurrentAccount()
+        val userService = Repository.getService<IUserService>()
+
+        userService.getCurrentAccount()
+            .zipWith(userService.getAuthorization(), BiFunction<String, String, Array<String>> { t1, t2 ->
+                return@BiFunction arrayOf(t1, t2)
+            })
+            .flatMap {
+                return@flatMap userService.getReceivedEvents(it[0], it[1], 1, 3)
+            }
             .subscribeOnIO()
             .observeOnMain()
             .subscribe {
-                et_account.setText(it)
+                LogUtil.logE("success: $it")
             }
             .bindToLifecycle()
-
-
-        btn_login.setOnThrottleClickListener {
-            val account = et_account.text?.toString()
-            val password = et_password.text?.toString()
-
-            if (account != null && password != null) {
-                githubService.login(account, password)
-                    .subscribeOnIO()
-                    .observeOnMain()
-                    .subscribe {
-                        LogUtil.logE(it.toString())
-                    }
-            }
-
-
-        }
     }
 }

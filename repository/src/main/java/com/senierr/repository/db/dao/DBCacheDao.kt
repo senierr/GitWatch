@@ -1,10 +1,10 @@
-package com.senierr.repository.db
+package com.senierr.repository.db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.senierr.repository.entity.DBCache
+import com.senierr.repository.db.entity.DBCache
 
 /**
  * 数据库缓存接口

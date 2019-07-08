@@ -32,7 +32,7 @@ ext {
     applicationId = "com.senierr.github"
 
     compileSdkVersion = 28
-    minSdkVersion = 21
+    minSdkVersion = 19
     targetSdkVersion = 28
 
     versionCode = 1
@@ -48,10 +48,11 @@ ext {
     rxHttp = "1.2.0"
     room = "1.1.1"
     gson = "2.8.2"
+    fastjson = '1.2.9'
     multitype = "1.0.1"
     permission = "1.1.0"
     glide = "4.9.0"
     photoview = "1.4.1"
     disklrucache = "2.0.2"
-    StateButton = "v1.0.0"
+    SuperTextView = "3.1.6.2"
 }

@@ -43,7 +43,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glide"
     implementation "com.senierr.http:rxhttp:$rootProject.ext.rxHttp"
-    implementation "com.github.niniloveyou:StateButton:$rootProject.ext.StateButton"
+    implementation "com.github.chenBingX:SuperTextView:$rootProject.ext.SuperTextView"
 
     implementation project(":base_support")
     implementation project(":repository")

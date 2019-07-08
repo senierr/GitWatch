@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import com.senierr.base.support.ext.setOnThrottleClickListener
+import com.senierr.base.support.ext.click
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.base.support.utils.KeyboardUtil
 import com.senierr.base.support.utils.ToastUtil
@@ -12,7 +12,7 @@ import com.senierr.github.R
 import com.senierr.github.domain.account.contract.LoginContract
 import com.senierr.github.domain.account.presenter.LoginPresenter
 import com.senierr.github.widget.CircularAnim
-import com.senierr.repository.entity.GithubError
+import com.senierr.repository.remote.entity.Error
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -48,9 +48,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginPresenter.bindToLifecycleOwner(this, this)
-
+        loginPresenter.onAttach(this)
         initView()
+    }
+
+    override fun onDestroy() {
+        loginPresenter.onDetach()
+        super.onDestroy()
     }
 
     override fun onBackPressed() {
@@ -63,13 +67,14 @@ class LoginActivity : BaseActivity(), LoginContract.View {
             onBackPressed()
         }
 
-        btn_visibility?.setOnThrottleClickListener {
+        btn_visibility?.click {
             it.isSelected = !it.isSelected
             et_password.setPasswordVisible(it.isSelected)
         }
 
-        btn_login?.setOnThrottleClickListener {
+        btn_login?.click {
             btn_login?.isClickable = false
+            btn_login?.setText(R.string.logging)
             KeyboardUtil.hideSoftInput(this)
             loginPresenter.login(this)
         }
@@ -86,11 +91,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun showAccountEmpty() {
         ToastUtil.showShort(this, R.string.account_empty)
         btn_login?.isClickable = true
+        btn_login?.setText(R.string.login)
     }
 
     override fun showPasswordEmpty() {
         ToastUtil.showShort(this, R.string.password_empty)
         btn_login?.isClickable = true
+        btn_login?.setText(R.string.login)
     }
 
     override fun showLoginSuccess() {
@@ -104,7 +111,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun showLoginFailure(e: Throwable) {
-        if (e is GithubError) {
+        if (e is Error) {
             ToastUtil.showLong(this, e.errorMsg)
         } else {
             ToastUtil.showLong(this, R.string.network_error)

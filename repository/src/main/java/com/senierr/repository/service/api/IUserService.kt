@@ -1,6 +1,7 @@
 package com.senierr.repository.service.api
 
-import com.senierr.repository.entity.UserInfo
+import com.senierr.repository.remote.entity.Event
+import com.senierr.repository.remote.entity.UserInfo
 import io.reactivex.Observable
 
 /**
@@ -15,7 +16,7 @@ interface IUserService {
      * Basic authentication登录
      * 登录完成后，会自动缓存用户信息
      */
-    fun login(username: String, password: String): Observable<UserInfo>
+    fun login(account: String, password: String): Observable<UserInfo>
 
     /**
      * 获取当前用户
@@ -26,4 +27,14 @@ interface IUserService {
      * 获取用户信息
      */
     fun getAuthorization(): Observable<String>
+
+    /**
+     * 获取收到的事件
+     */
+    fun getReceivedEvents(
+        account: String,
+        authorization: String,
+        pageIndex: Int,
+        pageSize: Int
+    ): Observable<MutableList<Event>>
 }

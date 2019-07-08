@@ -1,4 +1,4 @@
-package com.senierr.repository.entity
+package com.senierr.repository.db.entity
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore

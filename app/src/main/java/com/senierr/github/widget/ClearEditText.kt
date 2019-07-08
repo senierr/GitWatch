@@ -32,7 +32,7 @@ class ClearEditText : EditText {
     init {
         mClearDrawable = compoundDrawables[2]
         if (mClearDrawable == null) {
-            mClearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel)
+            mClearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel_light)
         }
         mClearDrawable?.let {
             it.setBounds(0, 0, it.intrinsicWidth, it.intrinsicHeight)

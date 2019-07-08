@@ -2,7 +2,8 @@ package com.senierr.repository.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.senierr.repository.entity.DBCache
+import com.senierr.repository.db.dao.DBCacheDao
+import com.senierr.repository.db.entity.DBCache
 
 /**
  * 数据库入口

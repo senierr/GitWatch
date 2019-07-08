@@ -13,7 +13,7 @@ import com.senierr.base.support.ui.listener.OnThrottleClickListener
 /**
  * View设置防抖动点击事件
  */
-fun View.setOnThrottleClickListener(listener: (view: View) -> Unit) {
+fun View.click(listener: (view: View) -> Unit) {
     this.setOnClickListener(object : OnThrottleClickListener() {
         override fun onThrottleClick(view: View) {
             listener.invoke(view)

@@ -26,7 +26,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
     implementation "com.senierr.http:rxhttp:$rootProject.ext.rxHttp"
-    implementation "com.google.code.gson:gson:$rootProject.ext.gson"
+    implementation "com.alibaba:fastjson:$rootProject.ext.fastjson"
     implementation "android.arch.persistence.room:runtime:$rootProject.ext.room"
     kapt "android.arch.persistence.room:compiler:$rootProject.ext.room"
 
