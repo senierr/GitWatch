@@ -8,6 +8,7 @@ import com.senierr.repository.Repository
 import com.senierr.repository.remote.entity.HttpResponse
 import com.senierr.repository.remote.entity.UserInfo
 import com.senierr.repository.service.api.IUserService
+import io.reactivex.Observable
 
 /**
  *

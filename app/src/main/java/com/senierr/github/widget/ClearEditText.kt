@@ -36,7 +36,7 @@ class ClearEditText : EditText {
         }
         mClearDrawable?.let {
             it.setBounds(0, 0, it.intrinsicWidth, it.intrinsicHeight)
-            DrawableUtil.tintDrawable(it, ContextCompat.getColor(context, R.color.color_888888))
+            DrawableUtil.tintDrawable(it, ContextCompat.getColor(context, R.color.colorPrimary))
         }
 
         setClearIconVisible(false)

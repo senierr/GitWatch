@@ -1,4 +1,4 @@
-package com.senierr.github.domain.home.event
+package com.senierr.github.domain.home
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.senierr.base.support.ui.BaseFragment
 import com.senierr.github.R
-import kotlinx.android.synthetic.main.fragment_event.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * 事件页面
@@ -15,13 +15,13 @@ import kotlinx.android.synthetic.main.fragment_event.*
  * @author zhouchunjie
  * @date 2019/7/8 21:21
  */
-class EventFragment : BaseFragment() {
+class OfficialAccountsFragment : BaseFragment() {
 
     private var pageIndex = 1
     private var pageSize = 10
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_event, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onLazyCreated() {
