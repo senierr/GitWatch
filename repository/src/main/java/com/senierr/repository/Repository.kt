@@ -8,7 +8,9 @@ import com.senierr.http.RxHttp
 import com.senierr.http.interceptor.LogInterceptor
 import com.senierr.repository.db.AppDatabase
 import com.senierr.repository.remote.RemoteApi
+import com.senierr.repository.service.api.IArticleService
 import com.senierr.repository.service.api.IUserService
+import com.senierr.repository.service.impl.ArticleService
 import com.senierr.repository.service.impl.UserService
 
 /**
@@ -56,6 +58,8 @@ object Repository {
     inline fun <reified T> getService(): T = when(T::class.java) {
         IUserService::class.java ->
             UserService() as T
+        IArticleService::class.java ->
+            ArticleService() as T
         else -> throw IllegalArgumentException("Can not find this type of the service!")
     }
 }

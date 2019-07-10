@@ -11,4 +11,5 @@ object RemoteApi {
     const val BASE_URL = "https://www.wanandroid.com"
 
     const val USER_LOGIN = "/user/login"
+    const val ARTICLE_LIST = "/article/list"
 }
