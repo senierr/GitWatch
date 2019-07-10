@@ -27,7 +27,7 @@ class SplashActivity : BaseActivity() {
 
         Observable.timer(1, TimeUnit.SECONDS)
                 .flatMap {
-                    return@flatMap Repository.getService<IUserService>().getAuthorization()
+                    return@flatMap Repository.getService<IUserService>().getCurrentUser()
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

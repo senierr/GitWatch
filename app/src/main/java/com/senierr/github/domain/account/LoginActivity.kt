@@ -1,5 +1,7 @@
 package com.senierr.github.domain.account
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +12,6 @@ import com.senierr.base.support.utils.KeyboardUtil
 import com.senierr.base.support.utils.ToastUtil
 import com.senierr.github.R
 import com.senierr.github.widget.CircularAnim
-import com.senierr.repository.remote.entity.Error
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  * @author zhouchunjie
  * @date 2019/7/6
  */
-class LoginActivity : BaseActivity(), LoginContract.View {
+class LoginActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_TARGET_INTENT = "target_intent"
@@ -40,19 +41,14 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         }
     }
 
-    private val loginPresenter = LoginPresenter()
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginPresenter.onAttach(this)
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         initView()
-    }
-
-    override fun onDestroy() {
-        loginPresenter.onDetach()
-        super.onDestroy()
     }
 
     override fun onBackPressed() {
@@ -71,51 +67,56 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         }
 
         btn_login?.click {
-            btn_login?.isClickable = false
-            btn_login?.setText(R.string.logging)
-            KeyboardUtil.hideSoftInput(this)
-            loginPresenter.login(this)
+            login()
         }
-    }
 
-    override fun getAccount(): String? {
-        return et_account?.text?.toString()
-    }
-
-    override fun getPassword(): String? {
-        return et_password?.text?.toString()
-    }
-
-    override fun showAccountEmpty() {
-        ToastUtil.showShort(this, R.string.account_empty)
-        btn_login?.isClickable = true
-        btn_login?.setText(R.string.login)
-    }
-
-    override fun showPasswordEmpty() {
-        ToastUtil.showShort(this, R.string.password_empty)
-        btn_login?.isClickable = true
-        btn_login?.setText(R.string.login)
-    }
-
-    override fun showLoginSuccess() {
-        CircularAnim().fullActivity(this, btn_login)
-            .colorOrImageRes(R.color.colorPrimary)
-            .go(object : CircularAnim.OnAnimationEndListener {
-                override fun onAnimationEnd() {
-                    doFinish(true)
+        loginViewModel.loginResult.observe(this, Observer { result ->
+            if (result == null) return@Observer
+            if (result.response != null) {
+                if (result.response.errorCode != 0) {
+                    // 登录异常
+                    result.response.errorMsg?.let { ToastUtil.showLong(this, it) }
+                } else {
+                    // 登录成功
+                    CircularAnim().fullActivity(this, btn_login)
+                        .colorOrImageRes(R.color.colorPrimary)
+                        .go(object : CircularAnim.OnAnimationEndListener {
+                            override fun onAnimationEnd() {
+                                doFinish(true)
+                            }
+                        })
                 }
-            })
+            } else {
+                // 网络异常
+                ToastUtil.showLong(this, R.string.network_error)
+            }
+            btn_login?.isClickable = true
+            btn_login?.setText(R.string.login)
+        })
     }
 
-    override fun showLoginFailure(e: Throwable) {
-        if (e is Error) {
-            ToastUtil.showLong(this, e.errorMsg)
-        } else {
-            ToastUtil.showLong(this, R.string.network_error)
+    private fun login() {
+        btn_login?.isClickable = false
+        btn_login?.setText(R.string.logging)
+        KeyboardUtil.hideSoftInput(this)
+
+        val account = et_account?.text?.toString()
+        val password = et_password?.text?.toString()
+
+        if (account.isNullOrBlank()) {
+            ToastUtil.showShort(this, R.string.account_empty)
+            btn_login?.isClickable = true
+            btn_login?.setText(R.string.login)
+            return
         }
-        btn_login?.isClickable = true
-        btn_login?.setText(R.string.login)
+        if (password.isNullOrBlank()) {
+            ToastUtil.showShort(this, R.string.password_empty)
+            btn_login?.isClickable = true
+            btn_login?.setText(R.string.login)
+            return
+        }
+
+        loginViewModel.login(account, password)
     }
 
     /**

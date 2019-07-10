@@ -24,7 +24,7 @@ object ToastUtil {
      */
     fun showShort(context: Context, @StringRes resId: Int) {
         if (toast == null) {
-            toast = Toast.makeText(context.applicationContext, null, Toast.LENGTH_SHORT)
+            toast = Toast.makeText(context, null, Toast.LENGTH_SHORT)
         }
         toast?.setText(resId)
         toast?.duration = Toast.LENGTH_SHORT
@@ -39,7 +39,7 @@ object ToastUtil {
      */
     fun showShort(context: Context, message: String) {
         if (toast == null) {
-            toast = Toast.makeText(context.applicationContext, null, Toast.LENGTH_SHORT)
+            toast = Toast.makeText(context, null, Toast.LENGTH_SHORT)
         }
         toast?.setText(message)
         toast?.duration = Toast.LENGTH_SHORT
@@ -54,7 +54,7 @@ object ToastUtil {
      */
     fun showLong(context: Context, @StringRes resId: Int) {
         if (toast == null) {
-            toast = Toast.makeText(context.applicationContext, null, Toast.LENGTH_LONG)
+            toast = Toast.makeText(context, null, Toast.LENGTH_LONG)
         }
         toast?.setText(resId)
         toast?.duration = Toast.LENGTH_LONG
@@ -69,7 +69,7 @@ object ToastUtil {
      */
     fun showLong(context: Context, message: String) {
         if (toast == null) {
-            toast = Toast.makeText(context.applicationContext, null, Toast.LENGTH_LONG)
+            toast = Toast.makeText(context, null, Toast.LENGTH_LONG)
         }
         toast?.setText(message)
         toast?.duration = Toast.LENGTH_LONG

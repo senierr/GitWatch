@@ -30,21 +30,5 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val userService = Repository.getService<IUserService>()
-
-        userService.getCurrentAccount()
-            .zipWith(userService.getAuthorization(), BiFunction<String, String, Array<String>> { t1, t2 ->
-                return@BiFunction arrayOf(t1, t2)
-            })
-            .flatMap {
-                return@flatMap userService.getReceivedEvents(it[0], it[1], 1, 3)
-            }
-            .subscribeOnIO()
-            .observeOnMain()
-            .subscribe {
-                LogUtil.logE("success: $it")
-            }
-            .bindToLifecycle()
     }
 }

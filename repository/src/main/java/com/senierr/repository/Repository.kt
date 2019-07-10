@@ -7,7 +7,7 @@ import com.senierr.base.support.utils.SPUtil
 import com.senierr.http.RxHttp
 import com.senierr.http.interceptor.LogInterceptor
 import com.senierr.repository.db.AppDatabase
-import com.senierr.repository.remote.GithubApi
+import com.senierr.repository.remote.RemoteApi
 import com.senierr.repository.service.api.IUserService
 import com.senierr.repository.service.impl.UserService
 
@@ -40,7 +40,7 @@ object Repository {
             .connectTimeout(TIMEOUT)
             .readTimeout(TIMEOUT)
             .writeTimeout(TIMEOUT)
-            .baseUrl(GithubApi.BASE_URL)
+            .baseUrl(RemoteApi.BASE_URL)
             .build()
         // 数据库
         database = Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME).build()
