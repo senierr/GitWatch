@@ -1,13 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        kotlin_version = '1.3.71'
+    }
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.40'
+        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.71'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -28,31 +31,47 @@ task clean(type: Delete) {
 ext {
     javaVersion = JavaVersion.VERSION_1_8
 
-    // Android
+    // app
     applicationId = "com.senierr.github"
-
     compileSdkVersion = 28
-    minSdkVersion = 19
+    minSdkVersion = 21
     targetSdkVersion = 28
-
     versionCode = 1
     versionName = "1.0.0"
 
-    // dependencies
-    kotlin = "1.3.40"
-    multidex = "1.0.3"
-    appcompat_v7 = "28.0.0"
-    design = "28.0.0"
-    rxandroid = "2.1.1"
-    rxjava = "2.1.10"
-    rxHttp = "2.1.1"
-    room = "1.1.1"
-    gson = "2.8.2"
-    fastjson = '1.2.9'
-    multitype = "1.0.1"
-    permission = "1.1.0"
-    glide = "4.9.0"
+    // 语言
+    kotlin = "1.3.71"
+    kotlinx_coroutines_android = "1.1.1"
+    // androidx
+    multidex = "2.0.1"
+    appcompat = "1.1.0"
+    lifecycle = "2.2.0"
+    // 下拉刷新
+    swiperefreshlayout = "1.0.0"
+    // 权限
+    permission = "2.0.0"
+    // 数据库
+    room = "2.2.5"
+    // 列表
+    recyclerview = "1.1.0"
+    multitype = "2.2.0"
+    viewpager2 = "1.0.0"
+    cardview = "1.0.0"
+    // 图片显示
+    glide = "4.11.0"
     photoview = "1.4.1"
+    lottie = "3.3.1"
+    // 缓存
     disklrucache = "2.0.2"
-    SuperTextView = "3.1.6.2"
+    // 时间日期选择器
+    datetimepicker = "4.2.2"
+    // 标签容器
+    flowLayout = "1.3.0"
+    // 网络请求
+    gson = "2.8.2"
+    okhttp = "4.7.1"
+    retrofit = "2.9.0"
+    converter_gson = "2.4.0"
+    // 后台任务
+    worker_manager = "2.3.4"
 }

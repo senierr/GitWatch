@@ -2,6 +2,7 @@ package com.senierr.base.support.utils
 
 import com.jakewharton.disklrucache.DiskLruCache
 import java.io.*
+import java.nio.charset.Charset
 
 /**
  * 磁盘缓存工具类

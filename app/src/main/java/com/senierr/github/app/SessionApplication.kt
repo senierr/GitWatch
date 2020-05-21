@@ -1,7 +1,7 @@
 package com.senierr.github.app
 
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.senierr.base.support.ui.BaseApplication
 import com.senierr.repository.Repository
 

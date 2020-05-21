@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import com.senierr.base.support.proxy.InstallFragment
 import java.io.File
 
@@ -19,7 +19,7 @@ object AppUtil {
     /**
      * 判断App是否安装
      */
-    fun isAppInstalled(context: Context, packageName: String): Boolean {
+    fun isAppInstalled(context: Context, packageName: String = context.packageName): Boolean {
         try {
             val packageInfo = context.packageManager.getPackageInfo(packageName, 0)
             return packageInfo != null
@@ -51,7 +51,7 @@ object AppUtil {
      * @param context 上下文
      * @param packageName 包名
      */
-    fun getVersionName(context: Context, packageName: String): String? {
+    fun getVersionName(context: Context, packageName: String = context.packageName): String? {
         try {
             val pi = context.packageManager.getPackageInfo(packageName, 0)
             return pi?.versionName
@@ -68,7 +68,7 @@ object AppUtil {
      * @param packageName 包名
      */
     @Suppress("DEPRECATION")
-    fun getVersionCode(context: Context, packageName: String): Long {
+    fun getVersionCode(context: Context, packageName: String = context.packageName): Long {
         try {
             val pi = context.packageManager.getPackageInfo(packageName, 0)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -88,7 +88,7 @@ object AppUtil {
      * @param context 上下文
      * @param packageName 包名
      */
-    fun isSystemApp(context: Context, packageName: String): Boolean {
+    fun isSystemApp(context: Context, packageName: String = context.packageName): Boolean {
         try {
             val ai = context.packageManager.getApplicationInfo(packageName, 0)
             return ai != null && ai.flags and ApplicationInfo.FLAG_SYSTEM != 0

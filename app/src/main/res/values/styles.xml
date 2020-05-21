@@ -1,13 +1,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/app_theme</item>
+        <item name="colorPrimaryDark">@color/app_theme</item>
+        <item name="colorAccent">@color/app_accent</item>
         <!-- 光标颜色 -->
         <item name="android:textCursorDrawable">@drawable/shape_cursor</item>
         <!-- 默认灰色背景 -->
-        <item name="android:windowBackground">@color/bg_content_grey</item>
+        <item name="android:windowBackground">@color/window_empty</item>
     </style>
 
     <!-- ToolBar菜单样式 -->

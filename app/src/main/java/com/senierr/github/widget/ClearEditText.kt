@@ -2,12 +2,12 @@ package com.senierr.github.widget
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import com.senierr.base.support.ui.listener.EditTextWatcher
 import com.senierr.github.R
 import com.senierr.github.utils.DrawableUtil
@@ -18,7 +18,7 @@ import com.senierr.github.utils.DrawableUtil
  * @author zhouchunjie
  * @date 2018/5/6
  */
-class ClearEditText : EditText {
+class ClearEditText : AppCompatEditText {
 
     constructor(context: Context) : super(context)
 
@@ -32,18 +32,18 @@ class ClearEditText : EditText {
     init {
         mClearDrawable = compoundDrawables[2]
         if (mClearDrawable == null) {
-            mClearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel_light)
+            mClearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_cancel)
         }
         mClearDrawable?.let {
             it.setBounds(0, 0, it.intrinsicWidth, it.intrinsicHeight)
-            DrawableUtil.tintDrawable(it, ContextCompat.getColor(context, R.color.colorPrimary))
+            DrawableUtil.tintDrawable(it, ContextCompat.getColor(context, R.color.app_theme))
         }
 
         setClearIconVisible(false)
         setOnFocusChangeListener { _, b ->
             this.hasFocus = b
             if (b) {
-                setClearIconVisible(text.isNotEmpty())
+                setClearIconVisible(text.isNullOrEmpty())
             } else {
                 setClearIconVisible(false)
             }
@@ -51,7 +51,7 @@ class ClearEditText : EditText {
         addTextChangedListener(object : EditTextWatcher() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(hasFocus){
-                    setClearIconVisible(text.isNotEmpty())
+                    setClearIconVisible(text.isNullOrEmpty())
                 }
             }
         })
@@ -87,6 +87,6 @@ class ClearEditText : EditText {
         } else {
             PasswordTransformationMethod.getInstance()
         }
-        setSelection(text.length)
+        setSelection(text?.length?: 0)
     }
 }

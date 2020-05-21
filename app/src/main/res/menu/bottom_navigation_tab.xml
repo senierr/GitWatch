@@ -2,21 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab_home"
-        android:icon="@drawable/ic_home_light"
+        android:icon="@drawable/ic_home"
         android:title="@string/home"/>
 
     <item
-        android:id="@+id/tab_hierarchy"
-        android:icon="@drawable/ic_hierarchy_light"
-        android:title="@string/hierarchy"/>
-
-    <item
         android:id="@+id/tab_official_accounts"
-        android:icon="@drawable/ic_official_accounts_light"
+        android:icon="@drawable/ic_home"
         android:title="@string/official_accounts"/>
 
     <item
         android:id="@+id/tab_me"
-        android:icon="@drawable/ic_person_light"
+        android:icon="@drawable/ic_person"
         android:title="@string/me"/>
 </menu>

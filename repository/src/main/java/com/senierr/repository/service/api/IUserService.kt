@@ -1,29 +1,40 @@
 package com.senierr.repository.service.api
 
-import com.senierr.repository.remote.entity.HttpResponse
-import com.senierr.repository.remote.entity.UserInfo
-import io.reactivex.Observable
+import com.senierr.repository.entity.dto.Token
+import com.senierr.repository.entity.dto.UserInfo
 
 /**
- * 用户数据接口
+ * 用户数据服务
  *
  * @author zhouchunjie
- * @date 2019/7/5 21:30
+ * @date 2020/5/15
  */
 interface IUserService {
 
     /**
      * 登录
+     *
+     * @param username 用户名
+     * @param password 密码
      */
-    fun login(account: String, password: String): Observable<HttpResponse<UserInfo>>
+    suspend fun login(username: String, password: String): Token
 
     /**
-     * 缓存当前用户
+     * 自动登录
      */
-    fun cacheCurrentUser(userInfo: UserInfo): Observable<Boolean>
+    suspend fun autoLogin(): Token
 
     /**
-     * 获取当前用户
+     * 获取授权用户的资料
      */
-    fun getCurrentUser(): Observable<UserInfo>
+    suspend fun getUserInfo(): UserInfo
+
+    /**
+     * 更新授权用户的资料
+     *
+     * @param name 昵称
+     * @param bio 自我介绍
+     * @param blog 博客
+     */
+    suspend fun updateUserInfo(name: String, bio: String?, blog: String?): UserInfo
 }

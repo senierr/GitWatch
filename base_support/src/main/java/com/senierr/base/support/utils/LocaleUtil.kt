@@ -17,15 +17,12 @@ object LocaleUtil {
      *
      * @return 语言
      */
-    fun locale(): Locale {
-        val locale: Locale
+    fun locale(): Locale =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = LocaleList.getDefault().get(0)
+            LocaleList.getDefault().get(0)
         } else {
-            locale = Locale.getDefault()
+            Locale.getDefault()
         }
-        return locale
-    }
 
     /**
      * 判断是否是中文

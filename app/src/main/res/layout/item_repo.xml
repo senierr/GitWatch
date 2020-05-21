@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="@dimen/dp_4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:paddingStart="@dimen/dp_16"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/tv_creator"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_creator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/text_content_sub"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_content"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_title_sub"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/tv_language"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_title_sub"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/tv_watch"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_title_sub"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_fork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/tv_star"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_title_sub"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_update_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentEnd="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_content_sub"
+            android:textSize="@dimen/sp_14" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

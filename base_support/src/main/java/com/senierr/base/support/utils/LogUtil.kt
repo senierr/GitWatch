@@ -13,62 +13,52 @@ object LogUtil {
     var isDebug = false
     var tag: String = LogUtil::class.java.simpleName
 
-    fun logV(msg: String) {
-        if (isDebug) {
+    fun logV(msg: String?) {
+        logV(tag, msg)
+    }
+
+    fun logD(msg: String?) {
+        logD(tag, msg)
+    }
+
+    fun logI(msg: String?) {
+        logI(tag, msg)
+    }
+
+    fun logW(msg: String?) {
+        logW(tag, msg)
+    }
+
+    fun logE(msg: String?) {
+        logE(tag, msg)
+    }
+
+    fun logV(tag: String, msg: String?) {
+        if (isDebug && msg != null) {
             Log.v(tag, msg)
         }
     }
 
-    fun logD(msg: String) {
-        if (isDebug) {
+    fun logD(tag: String, msg: String?) {
+        if (isDebug && msg != null) {
             Log.d(tag, msg)
         }
     }
 
-    fun logI(msg: String) {
-        if (isDebug) {
+    fun logI(tag: String, msg: String?) {
+        if (isDebug && msg != null) {
             Log.i(tag, msg)
         }
     }
 
-    fun logW(msg: String) {
-        if (isDebug) {
+    fun logW(tag: String, msg: String?) {
+        if (isDebug && msg != null) {
             Log.w(tag, msg)
         }
     }
 
-    fun logE(msg: String) {
-        if (isDebug) {
-            Log.e(tag, msg)
-        }
-    }
-
-    fun logV(tag: String, msg: String) {
-        if (isDebug) {
-            Log.v(tag, msg)
-        }
-    }
-
-    fun logD(tag: String, msg: String) {
-        if (isDebug) {
-            Log.d(tag, msg)
-        }
-    }
-
-    fun logI(tag: String, msg: String) {
-        if (isDebug) {
-            Log.i(tag, msg)
-        }
-    }
-
-    fun logW(tag: String, msg: String) {
-        if (isDebug) {
-            Log.w(tag, msg)
-        }
-    }
-
-    fun logE(tag: String, msg: String) {
-        if (isDebug) {
+    fun logE(tag: String, msg: String?) {
+        if (isDebug && msg != null) {
             Log.e(tag, msg)
         }
     }

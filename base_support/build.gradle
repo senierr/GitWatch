@@ -10,21 +10,14 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin"
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.appcompat_v7"
-    implementation "com.android.support:design:$rootProject.ext.design"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.kotlinx_coroutines_android"
+    implementation "androidx.multidex:multidex:$rootProject.ext.multidex"
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"
     implementation "com.jakewharton:disklrucache:$rootProject.ext.disklrucache"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.ext.recyclerview"
 }

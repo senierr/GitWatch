@@ -57,6 +57,23 @@ object FileUtil {
     }
 
     /**
+     * 删除文件/文件夹及内容
+     */
+    fun deleteFile(file: File?): Boolean {
+        if (file == null || !file.exists()) return true
+        if (file.isDirectory) {
+            val fileList = file.listFiles()
+            if (fileList != null && fileList.isNotEmpty()) {
+                for (temp in fileList) {
+                    val success = deleteFile(temp)
+                    if (!success) return false
+                }
+            }
+        }
+        return file.delete()
+    }
+
+    /**
      * 格式化单位
      */
     fun getFormatSize(size: Double): String {
@@ -67,21 +84,21 @@ object FileUtil {
 
         val megaByte = kiloByte / 1024
         if (megaByte < 1) {
-            val result1 = BigDecimal(java.lang.Double.toString(kiloByte))
+            val result1 = BigDecimal(kiloByte.toString())
             return result1.setScale(2, BigDecimal.ROUND_HALF_UP)
                 .toPlainString() + "KB"
         }
 
         val gigaByte = megaByte / 1024
         if (gigaByte < 1) {
-            val result2 = BigDecimal(java.lang.Double.toString(megaByte))
+            val result2 = BigDecimal(megaByte.toString())
             return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
                 .toPlainString() + "MB"
         }
 
         val teraBytes = gigaByte / 1024
         if (teraBytes < 1) {
-            val result3 = BigDecimal(java.lang.Double.toString(gigaByte))
+            val result3 = BigDecimal(gigaByte.toString())
             return result3.setScale(2, BigDecimal.ROUND_HALF_UP)
                 .toPlainString() + "GB"
         }

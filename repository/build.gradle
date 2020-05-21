@@ -10,25 +10,30 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+
+        multiDexEnabled true
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
-    implementation "com.senierr.http:rxhttp:$rootProject.ext.rxHttp"
-    implementation "com.google.code.gson:gson:$rootProject.ext.gson"
-    implementation "android.arch.persistence.room:runtime:$rootProject.ext.room"
-    kapt "android.arch.persistence.room:compiler:$rootProject.ext.room"
-
     implementation project(":base_support")
+    // 语言
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.kotlinx_coroutines_android"
+    // 权限
+    implementation "com.senierr.permission:library:$rootProject.ext.permission"
+    // 网络请求
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.converter_gson"
+    // 数据库
+    implementation "androidx.room:room-runtime:$rootProject.ext.room"
+    kapt "androidx.room:room-compiler:$rootProject.ext.room"
+    // 日志打印
+    debugImplementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.2'
 }

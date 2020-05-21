@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import android.support.v4.content.FileProvider
+import androidx.core.content.FileProvider
 import android.text.TextUtils
 import java.io.File
 
@@ -58,7 +58,7 @@ object IntentUtil {
     /**
      * 获取打开普通视图的意图
      */
-    fun getNormalViewIntent(context: Context, uri: Uri): Intent {
+    fun getNormalViewIntent(uri: Uri): Intent {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = uri
         return intent
@@ -113,5 +113,12 @@ object IntentUtil {
         }
         intent.setDataAndType(uri, type)
         return intent
+    }
+
+    /**
+     * 获取打开邮箱的意图
+     */
+    fun getOpenEmailIntent(email: String): Intent {
+        return Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$email"))
     }
 }

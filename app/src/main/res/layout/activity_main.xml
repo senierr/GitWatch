@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".domain.home.MainActivity">
+    tools:context=".domain.main.MainActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_top"
-        app:title="@string/app_name"
-        style="@style/Toolbar"/>
+        style="@style/Toolbar"
+        app:title="@string/app_name" />
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_main"
+        android:layout_below="@id/tb_top"
+        android:layout_above="@id/navigation_bottom"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bnv_navigation"
-        app:itemTextColor="@color/color_navigation_tab"
-        app:itemIconTint="@color/color_navigation_tab"
-        app:menu="@menu/bottom_navigation_tab"
-        app:labelVisibilityMode="labeled"
-        android:background="@color/white"
+    <include
+        android:id="@+id/navigation_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        layout="@layout/layout_main_bottom_navigation" />
+</RelativeLayout>

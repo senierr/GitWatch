@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import android.support.v4.content.FileProvider
+import androidx.core.content.FileProvider
 import com.senierr.base.support.ui.BaseFragment
 import java.io.File
 

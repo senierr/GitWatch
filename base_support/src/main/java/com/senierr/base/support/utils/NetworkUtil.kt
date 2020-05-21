@@ -3,7 +3,7 @@ package com.senierr.base.support.utils
 import android.Manifest
 import android.content.Context
 import android.net.ConnectivityManager
-import android.support.annotation.RequiresPermission
+import androidx.annotation.RequiresPermission
 
 /**
  * 网络工具类

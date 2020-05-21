@@ -6,19 +6,19 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context=".domain.home.MainActivity">
+	tools:context=".domain.main.MainActivity">
 
-	<android.support.v7.widget.Toolbar
+	<androidx.appcompat.widget.Toolbar
 		android:id="@+id/tb_top"
 		app:title="@string/login"
-		app:navigationIcon="@drawable/ic_allow_back_light"
+		app:navigationIcon="@drawable/ic_close"
 		style="@style/Toolbar"/>
 
 	<com.senierr.github.widget.ClearEditText
 		android:id="@+id/et_account"
 		android:hint="@string/account"
 		android:textSize="@dimen/sp_15"
-		android:textColor="@color/text_normal"
+		android:textColor="@color/text_content"
 		android:singleLine="true"
 		android:background="@color/white"
 		android:layout_marginTop="@dimen/dp_16"
@@ -28,7 +28,7 @@
 		android:layout_height="@dimen/dp_48"/>
 
 	<View
-		android:background="@color/bg_divider"
+		android:background="@color/divider_normal"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/px_1"/>
 
@@ -43,7 +43,7 @@
 			android:hint="@string/password"
 			android:inputType="textPassword"
 			android:textSize="@dimen/sp_15"
-			android:textColor="@color/text_normal"
+			android:textColor="@color/text_content"
 			android:maxLength="15"
 			android:singleLine="true"
 			android:background="@color/transparent"
@@ -56,7 +56,7 @@
 		<ImageButton
 			android:id="@+id/btn_visibility"
 			android:src="@drawable/selector_visibility"
-			android:tint="@color/colorPrimary"
+			android:tint="@color/app_theme"
 			android:background="@color/transparent"
 			android:paddingStart="@dimen/dp_8"
 			android:paddingEnd="@dimen/dp_16"
@@ -64,18 +64,15 @@
 			android:layout_height="match_parent"/>
 	</LinearLayout>
 
-	<com.coorchice.library.SuperTextView
+	<Button
 		android:id="@+id/btn_login"
 		android:text="@string/login"
 		android:textColor="@color/text_white"
 		android:textSize="@dimen/sp_15"
-		android:gravity="center"
-		app:stv_solid="@color/colorPrimary"
-		app:stv_corner="@dimen/dp_2"
-		app:stv_pressBgColor="@color/colorPrimaryDark"
-		android:layout_marginStart="@dimen/dp_16"
-		android:layout_marginEnd="@dimen/dp_16"
-		android:layout_marginTop="@dimen/dp_16"
+		style="@style/BaseButton"
+		android:background="@drawable/shape_white_corner_4dp"
+		android:backgroundTint="@color/color_btn_theme"
+		android:layout_margin="@dimen/dp_16"
 		android:layout_width="match_parent"
-		android:layout_height="@dimen/dp_48"/>
+		android:layout_height="@dimen/dp_45"/>
 </LinearLayout>
