@@ -35,4 +35,9 @@ data class Article(
     val userId: Int = 0,
     val visible: Int = 0,
     val zan: Int = 0
-)
+) {
+    companion object {
+        const val TYPE_NORMAL = 0   // 普通文章
+        const val TYPE_TOP = 1      // 置顶文章
+    }
+}

@@ -1,135 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="@dimen/dp_4"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_corner_4dp"
+    android:layout_marginStart="@dimen/dp_4"
+    android:layout_marginEnd="@dimen/dp_4"
+    android:layout_marginTop="@dimen/dp_4"
+    android:padding="@dimen/dp_16">
 
-    <LinearLayout
-        android:paddingStart="@dimen/dp_16"
-        android:paddingEnd="@dimen/dp_16"
-        android:paddingTop="@dimen/dp_8"
-        android:paddingBottom="@dimen/dp_8"
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/sp_16" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/text_title"
-            android:textSize="@dimen/sp_16" />
+    <com.nex3z.flowlayout.FlowLayout
+        android:id="@+id/fl_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_marginTop="@dimen/dp_8"
+        app:flMaxRows="1"
+        app:flChildSpacing="@dimen/dp_4"
+        app:flRowSpacing="@dimen/dp_4" />
 
-        <com.nex3z.flowlayout.FlowLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:flChildSpacing="@dimen/dp_4"
-            app:flRowSpacing="@dimen/dp_4">
+    <TextView
+        android:id="@+id/tv_creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fl_tag"
+        android:layout_marginTop="@dimen/dp_8"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_content"
+        android:textSize="@dimen/sp_14" />
 
-            <TextView
-                android:id="@+id/tv_roof"
-                android:text="@string/tag_roof"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_4"
-                android:background="@drawable/shape_tag_warn"
-                android:textColor="@color/text_warn"
-                android:textSize="@dimen/sp_12" />
+    <TextView
+        android:id="@+id/tv_publish_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tv_creator"
+        android:layout_alignBottom="@id/tv_creator"
+        android:layout_marginStart="@dimen/dp_8"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_content_sub"
+        android:textSize="@dimen/sp_14" />
 
-            <TextView
-                android:id="@+id/tv_new"
-                android:text="@string/tag_roof"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_4"
-                android:background="@drawable/shape_tag_warn"
-                android:textColor="@color/text_warn"
-                android:textSize="@dimen/sp_12" />
-        </com.nex3z.flowlayout.FlowLayout>
-
-        <TextView
-            android:id="@+id/tv_creator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/text_content_sub"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_name"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/text_content"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_desc"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_title_sub"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_watch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_desc"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@id/tv_language"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_title_sub"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_desc"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@id/tv_watch"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_title_sub"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_fork"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_desc"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@id/tv_star"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_title_sub"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_update_at"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_desc"
-            android:layout_marginTop="8dp"
-            android:layout_alignParentEnd="true"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_content_sub"
-            android:textSize="@dimen/sp_14" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/iv_favorite"
+        android:src="@drawable/selector_favorite"
+        android:tint="@color/app_accent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/tv_creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

@@ -1,8 +1,14 @@
 package com.senierr.github.domain.home.wrapper
 
+import android.content.Context
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.nex3z.flowlayout.FlowLayout
 import com.senierr.adapter.internal.ViewHolder
 import com.senierr.adapter.internal.ViewHolderWrapper
+import com.senierr.base.support.utils.ScreenUtil
 import com.senierr.github.R
 import com.senierr.repository.entity.dto.Article
 
@@ -15,18 +21,76 @@ import com.senierr.repository.entity.dto.Article
 class ArticleWrapper : ViewHolderWrapper<Article>(R.layout.item_home_article) {
 
     override fun onBindViewHolder(holder: ViewHolder, item: Article) {
-        val tvName = holder.findView<TextView>(R.id.tv_name)
-        val tvCreator = holder.findView<TextView>(R.id.tv_creator)
-        val tvDesc = holder.findView<TextView>(R.id.tv_desc)
-        val tvLanguage = holder.findView<TextView>(R.id.tv_language)
-        val tvWatch = holder.findView<TextView>(R.id.tv_watch)
-        val tvStar = holder.findView<TextView>(R.id.tv_star)
-        val tvFork = holder.findView<TextView>(R.id.tv_fork)
-        val tvUpdateAt = holder.findView<TextView>(R.id.tv_update_at)
+        val context = holder.itemView.context
 
-        tvName?.text = item.title
-        tvCreator?.text = item.author
-        tvDesc?.text = item.desc
-        tvUpdateAt?.text = item.niceDate
+        val tvTitle = holder.findView<TextView>(R.id.tv_title)
+        val flTag = holder.findView<FlowLayout>(R.id.fl_tag)
+        val tvCreator = holder.findView<TextView>(R.id.tv_creator)
+        val tvPublishAt = holder.findView<TextView>(R.id.tv_publish_at)
+        val ivFavorite = holder.findView<ImageView>(R.id.iv_favorite)
+
+        tvTitle?.text = item.title
+        flTag?.removeAllViews()
+        if (item.type == Article.TYPE_TOP) {
+            flTag?.addView(createWarnTagView(context, context.getString(R.string.tag_roof)))
+        }
+        if (item.fresh) {
+            flTag?.addView(createWarnTagView(context, context.getString(R.string.tag_new)))
+        }
+        item.tags.forEach {
+            flTag?.addView(createAccentTagView(context, it.name))
+        }
+        flTag?.addView(createAccentTagView(context, "${item.superChapterName}/${item.chapterName}"))
+        tvCreator?.text = if (item.author.isNotBlank()) {
+            context.getString(R.string.format_author, item.author)
+        } else {
+            context.getString(R.string.format_sharer, item.shareUser)
+        }
+        tvPublishAt?.text = item.publishTime.toString()
+        ivFavorite?.isSelected = item.collect
+    }
+
+    /**
+     * 创建提醒标签
+     */
+    private fun createWarnTagView(context: Context, text: String): TextView {
+        val tagView = TextView(context)
+        tagView.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        tagView.text = text
+        tagView.textSize = 12F
+        tagView.setTextColor(ContextCompat.getColor(context, R.color.app_warn))
+        tagView.setBackgroundResource(R.drawable.shape_tag_warn)
+        tagView.setPadding(
+            ScreenUtil.dp2px(context, 4F),
+            ScreenUtil.dp2px(context, 2F),
+            ScreenUtil.dp2px(context, 4F),
+            ScreenUtil.dp2px(context, 2F)
+        )
+        return tagView
+    }
+
+    /**
+     * 创建普通标签
+     */
+    private fun createAccentTagView(context: Context, text: String): TextView {
+        val tagView = TextView(context)
+        tagView.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        tagView.text = text
+        tagView.textSize = 12F
+        tagView.setTextColor(ContextCompat.getColor(context, R.color.app_accent))
+        tagView.setBackgroundResource(R.drawable.shape_tag_accent)
+        tagView.setPadding(
+            ScreenUtil.dp2px(context, 4F),
+            ScreenUtil.dp2px(context, 2F),
+            ScreenUtil.dp2px(context, 4F),
+            ScreenUtil.dp2px(context, 2F)
+        )
+        return tagView
     }
 }

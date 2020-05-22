@@ -28,4 +28,7 @@
 
     <string name="tag_roof">置顶</string>
     <string name="tag_new">新</string>
+
+    <string name="format_author">作者: %1$s</string>
+    <string name="format_sharer">分享者: %1$s</string>
 </resources>
