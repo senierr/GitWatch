@@ -37,7 +37,7 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
         })
         splashViewModel.autoLoginFailure.observe(this, Observer {
             if (it is HttpException) {
-                ToastUtil.showShort(this, it.message)
+                ToastUtil.showShort(this, it.errorMsg)
             }
             val targetIntent = Intent(this, MainActivity::class.java)
             LoginActivity.start(this, targetIntent)

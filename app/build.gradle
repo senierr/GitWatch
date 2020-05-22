@@ -48,6 +48,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.ext.recyclerview"
     implementation "com.senierr.adapter:multitype:$rootProject.ext.multitype"
     implementation "androidx.cardview:cardview:$rootProject.ext.cardview"
+    implementation "com.youth.banner:banner:$rootProject.ext.banner"
+    implementation "com.nex3z:flow-layout:$rootProject.ext.flow_layout"
     // 后台任务
     implementation "androidx.work:work-runtime:$rootProject.ext.worker_manager"
     // 内存泄露

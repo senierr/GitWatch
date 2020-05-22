@@ -23,6 +23,7 @@
     <color name="text_link">#477aac</color>
     <color name="text_white">#ffffff</color>
     <color name="text_warn">#ce3d3a</color>
+    <color name="text_accent">#499C54</color>
     <!-- 按钮色 -->
     <color name="btn_theme">#3C3F41</color>
     <color name="btn_theme_pressed">#4D3C3F41</color>
@@ -30,5 +31,9 @@
     <color name="btn_white">#FFFFFF</color>
     <color name="btn_white_pressed">#4DFFFFFF</color>
     <color name="btn_white_unable">#B3B3B3</color>
+    <color name="btn_accent">#499C54</color>
+    <color name="btn_accent_pressed">#4D499C54</color>
+    <color name="btn_accent_selected">#4D499C54</color>
+    <color name="btn_accent_unable">#B3B3B3</color>
 
 </resources>

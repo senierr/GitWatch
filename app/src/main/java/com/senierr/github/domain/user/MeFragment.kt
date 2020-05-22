@@ -44,11 +44,11 @@ class MeFragment : BaseFragment(R.layout.fragment_me) {
         })
         userInfoViewModel.fetchUserInfoFailure.observe(this, Observer {
             LogUtil.logE(Log.getStackTraceString(it))
-            if (it is HttpException) {
-                ToastUtil.showShort(context, it.message)
-            } else {
-                ToastUtil.showShort(context, R.string.network_error)
-            }
+//            if (it is HttpException) {
+//                ToastUtil.showShort(context, it.message)
+//            } else {
+//                ToastUtil.showShort(context, R.string.network_error)
+//            }
         })
     }
 
@@ -56,19 +56,19 @@ class MeFragment : BaseFragment(R.layout.fragment_me) {
      * 渲染视图
      */
     private fun renderView(userInfo: UserInfo) {
-        // 头像
-        Glide.with(this).load(userInfo.avatarUrl).into(iv_avatar)
-        // 昵称
-        tv_name?.text = userInfo.name
-        // 关注者
-        tv_followers?.text = userInfo.followers.toString()
-        // 关注的人
-        tv_following?.text = userInfo.following.toString()
-        // 邮箱
-        tv_email?.text = userInfo.email
-        // 博客
-        tv_blog?.text = userInfo.blog
-        // 自我介绍
-        tv_bio?.text = userInfo.bio
+//        // 头像
+//        Glide.with(this).load(userInfo.avatarUrl).into(iv_avatar)
+//        // 昵称
+//        tv_name?.text = userInfo.name
+//        // 关注者
+//        tv_followers?.text = userInfo.followers.toString()
+//        // 关注的人
+//        tv_following?.text = userInfo.following.toString()
+//        // 邮箱
+//        tv_email?.text = userInfo.email
+//        // 博客
+//        tv_blog?.text = userInfo.blog
+//        // 自我介绍
+//        tv_bio?.text = userInfo.bio
     }
 }

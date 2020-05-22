@@ -8,8 +8,8 @@ package com.senierr.repository.sp
  */
 object SPKey {
 
-    const val USER_LOGIN_TOKEN = "user_login_token"   // 用户登录Token
-    const val USER_LOGIN_REFRESH_TOKEN = "user_login_refresh_token"   // 用户登录RefreshToken
+    const val LOGIN_USERNAME = "login_username"   // 用户名
+    const val LOGIN_PASSWORD = "login_password"   // 密码
 
     const val SETTING_NOTIFICATION_ENABLED = "setting_notification_enabled"   // 设置-通知
 }

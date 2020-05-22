@@ -26,12 +26,12 @@ class UserInfoViewModel : ViewModel() {
 
     fun fetchUserInfo() {
         viewModelScope.launch {
-            try {
-                val userInfo = userService.getUserInfo()
-                fetchUserInfoSuccess.value = userInfo
-            } catch (e: Exception) {
-                fetchUserInfoFailure.value = e
-            }
+//            try {
+//                val userInfo = userService.getUserInfo()
+//                fetchUserInfoSuccess.value = userInfo
+//            } catch (e: Exception) {
+//                fetchUserInfoFailure.value = e
+//            }
         }
     }
 }

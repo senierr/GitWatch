@@ -11,7 +11,7 @@ import com.senierr.base.support.ext.click
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.github.R
 import com.senierr.github.domain.issue.IssueFragment
-import com.senierr.github.domain.search.SearchFragment
+import com.senierr.github.domain.home.HomeFragment
 import com.senierr.github.domain.user.MeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main_bottom_navigation.*
@@ -72,10 +72,10 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         override fun getItemCount(): Int = 3
 
         override fun createFragment(position: Int): Fragment = when (position) {
-            0 -> SearchFragment()
+            0 -> HomeFragment()
             1 -> IssueFragment()
             2 -> MeFragment()
-            else -> SearchFragment()
+            else -> HomeFragment()
         }
     }
 }

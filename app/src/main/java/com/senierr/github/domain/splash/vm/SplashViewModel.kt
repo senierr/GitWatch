@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.senierr.repository.Repository
+import com.senierr.repository.entity.dto.HttpResponse
 import com.senierr.repository.entity.dto.Token
+import com.senierr.repository.entity.dto.UserInfo
 import com.senierr.repository.service.api.IUserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -19,7 +21,7 @@ import kotlinx.coroutines.withContext
  */
 class SplashViewModel : ViewModel() {
 
-    val autoLoginSuccess = MutableLiveData<Token>()
+    val autoLoginSuccess = MutableLiveData<UserInfo>()
     val autoLoginFailure = MutableLiveData<Exception>()
 
     private val userService = Repository.getService<IUserService>()

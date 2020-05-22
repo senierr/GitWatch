@@ -1,10 +1,9 @@
 package com.senierr.repository.service.api
 
-import com.senierr.repository.entity.dto.Token
 import com.senierr.repository.entity.dto.UserInfo
 
 /**
- * 用户数据服务
+ * 用户服务
  *
  * @author zhouchunjie
  * @date 2020/5/15
@@ -17,24 +16,24 @@ interface IUserService {
      * @param username 用户名
      * @param password 密码
      */
-    suspend fun login(username: String, password: String): Token
+    suspend fun login(username: String, password: String): UserInfo
 
     /**
      * 自动登录
      */
-    suspend fun autoLogin(): Token
+    suspend fun autoLogin(): UserInfo
 
     /**
-     * 获取授权用户的资料
-     */
-    suspend fun getUserInfo(): UserInfo
-
-    /**
-     * 更新授权用户的资料
+     * 注册
      *
-     * @param name 昵称
-     * @param bio 自我介绍
-     * @param blog 博客
+     * @param username 用户名
+     * @param password 密码
+     * @param repassword 确认密码
      */
-    suspend fun updateUserInfo(name: String, bio: String?, blog: String?): UserInfo
+    suspend fun register(username: String, password: String, repassword: String): UserInfo
+
+    /**
+     * 登出
+     */
+    suspend fun logout(): UserInfo
 }

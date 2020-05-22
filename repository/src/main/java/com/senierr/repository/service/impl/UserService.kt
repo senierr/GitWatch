@@ -1,6 +1,6 @@
 package com.senierr.repository.service.impl
 
-import com.senierr.repository.entity.dto.Token
+import com.senierr.repository.entity.dto.HttpResponse
 import com.senierr.repository.entity.dto.UserInfo
 import com.senierr.repository.remote.RemoteManager
 import com.senierr.repository.remote.api.UserApi
@@ -20,41 +20,40 @@ class UserService : IUserService {
     private val userApi by lazy { RemoteManager.getNormalHttp().create(UserApi::class.java) }
     private val spUtil by lazy { SPManager.getSP() }
 
-    override suspend fun login(username: String, password: String): Token {
+    override suspend fun login(username: String, password: String): UserInfo {
         return withContext(Dispatchers.IO) {
-            val token = userApi.getAccessToken(username, password)
-            spUtil.putString(SPKey.USER_LOGIN_TOKEN, token.accessToken)
-            spUtil.putString(SPKey.USER_LOGIN_REFRESH_TOKEN, token.refreshToken)
-            return@withContext token
+            val response = userApi.login(username, password)
+            if (!response.isSuccessful()) throw response.getException()
+            spUtil.putString(SPKey.LOGIN_USERNAME, username)
+            spUtil.putString(SPKey.LOGIN_PASSWORD, password)
+            return@withContext response.data
         }
     }
 
-    override suspend fun autoLogin(): Token {
+    override suspend fun autoLogin(): UserInfo {
         return withContext(Dispatchers.IO) {
-            val accessToken = spUtil.getString(SPKey.USER_LOGIN_TOKEN)
-            val refreshToken = spUtil.getString(SPKey.USER_LOGIN_REFRESH_TOKEN)
-            if (accessToken.isNotBlank() && refreshToken.isNotBlank()) {
-                val token = userApi.refreshAccessToken(refreshToken)
-                spUtil.putString(SPKey.USER_LOGIN_TOKEN, token.accessToken)
-                spUtil.putString(SPKey.USER_LOGIN_REFRESH_TOKEN, token.refreshToken)
-                return@withContext token
-            } else {
-                throw IllegalArgumentException("access_token or refresh_token is null.")
-            }
+            val username = spUtil.getString(SPKey.LOGIN_USERNAME)
+            val password = spUtil.getString(SPKey.LOGIN_PASSWORD)
+            val response = userApi.login(username, password)
+            if (!response.isSuccessful()) throw response.getException()
+            return@withContext response.data
         }
     }
 
-    override suspend fun getUserInfo(): UserInfo {
+    override suspend fun register(username: String, password: String, repassword: String): UserInfo {
         return withContext(Dispatchers.IO) {
-            val accessToken = spUtil.getString(SPKey.USER_LOGIN_TOKEN)
-            userApi.getUserInfo(accessToken)
+            val response = userApi.register(username, password, repassword)
+            if (!response.isSuccessful()) throw response.getException()
+            return@withContext response.data
         }
     }
 
-    override suspend fun updateUserInfo(name: String, bio: String?, blog: String?): UserInfo {
+    override suspend fun logout(): UserInfo {
         return withContext(Dispatchers.IO) {
-            val accessToken = spUtil.getString(SPKey.USER_LOGIN_TOKEN)
-            return@withContext userApi.updateUserInfo(accessToken, name, bio, blog)
+            val response = userApi.logout()
+            if (!response.isSuccessful()) throw response.getException()
+            RemoteManager.getCookieStore().clear()
+            return@withContext response.data
         }
     }
 }

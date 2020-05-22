@@ -1,19 +1,20 @@
-package com.senierr.github.domain.search.wrapper
+package com.senierr.github.domain.home.wrapper
 
 import android.widget.TextView
 import com.senierr.adapter.internal.ViewHolder
 import com.senierr.adapter.internal.ViewHolderWrapper
 import com.senierr.github.R
+import com.senierr.repository.entity.dto.Article
 
 /**
- * 仓库适配器
+ * 首页文章适配器
  *
  * @author zhouchunjie
  * @date 2020/5/10
  */
-class RepoWrapper : ViewHolderWrapper<com.senierr.repository.entity.dto.Repo>(R.layout.item_repo) {
+class ArticleWrapper : ViewHolderWrapper<Article>(R.layout.item_home_article) {
 
-    override fun onBindViewHolder(holder: ViewHolder, item: com.senierr.repository.entity.dto.Repo) {
+    override fun onBindViewHolder(holder: ViewHolder, item: Article) {
         val tvName = holder.findView<TextView>(R.id.tv_name)
         val tvCreator = holder.findView<TextView>(R.id.tv_creator)
         val tvDesc = holder.findView<TextView>(R.id.tv_desc)
@@ -23,13 +24,9 @@ class RepoWrapper : ViewHolderWrapper<com.senierr.repository.entity.dto.Repo>(R.
         val tvFork = holder.findView<TextView>(R.id.tv_fork)
         val tvUpdateAt = holder.findView<TextView>(R.id.tv_update_at)
 
-        tvName?.text = item.humanName
-        tvCreator?.text = item.projectCreator
-        tvDesc?.text = item.description
-        tvLanguage?.text = item.language
-        tvWatch?.text = item.watchersCount.toString()
-        tvStar?.text = item.stargazersCount.toString()
-        tvFork?.text = item.forksCount.toString()
-        tvUpdateAt?.text = item.updatedAt
+        tvName?.text = item.title
+        tvCreator?.text = item.author
+        tvDesc?.text = item.desc
+        tvUpdateAt?.text = item.niceDate
     }
 }

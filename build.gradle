@@ -61,12 +61,14 @@ ext {
     glide = "4.11.0"
     photoview = "1.4.1"
     lottie = "3.3.1"
+    // 轮播图
+    banner = "2.0.8"
     // 缓存
     disklrucache = "2.0.2"
     // 时间日期选择器
     datetimepicker = "4.2.2"
     // 标签容器
-    flowLayout = "1.3.0"
+    flow_layout = "1.3.0"
     // 网络请求
     gson = "2.8.2"
     okhttp = "4.7.1"

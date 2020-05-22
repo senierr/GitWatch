@@ -70,7 +70,7 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
             login()
         }
 
-        et_account?.setText("senierr_zhou@163.com")
+        et_account?.setText("senierr")
     }
 
     private fun initViewModel() {
@@ -87,11 +87,11 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
         })
 
         loginViewModel.loginFailure.observe(this, Observer {
-            if (it is HttpException) {
-                ToastUtil.showLong(this, it.message)
-            } else {
-                ToastUtil.showLong(this, R.string.network_error)
-            }
+//            if (it is HttpException) {
+//                ToastUtil.showLong(this, it.message)
+//            } else {
+//                ToastUtil.showLong(this, R.string.network_error)
+//            }
             btn_login?.isClickable = true
             btn_login?.setText(R.string.login)
         })

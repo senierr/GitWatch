@@ -8,10 +8,7 @@ package com.senierr.repository.remote
  */
 object Constant {
 
-    const val TAG_DEBUG = "remote_http"
     const val TIMEOUT = 15 * 1000L
 
-    const val BASE_URL = "https://gitee.com/"
-    const val CLIENT_ID = "850dd80788ccd88badc58ee9a32bd0eb8d105602a65817e8accae48b77b5594f"
-    const val CLIENT_SECRET = "ccc8d307963bedaad3564116075273110d5ab649a8ea4cbde82c181c4cd05e41"
+    const val BASE_URL = "https://www.wanandroid.com/"
 }
