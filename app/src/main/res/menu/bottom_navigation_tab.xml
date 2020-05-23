@@ -6,8 +6,13 @@
         android:title="@string/home"/>
 
     <item
+        android:id="@+id/tab_hierarchy"
+        android:icon="@drawable/ic_donut_small"
+        android:title="@string/hierarchy"/>
+
+    <item
         android:id="@+id/tab_official_accounts"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_question_answer"
         android:title="@string/official_accounts"/>
 
     <item

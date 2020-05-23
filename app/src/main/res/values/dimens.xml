@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- 底部导航字体大小 -->
+	<dimen name="design_bottom_navigation_active_text_size" tools:ignore="PrivateResource">12sp</dimen>
+	<dimen name="design_bottom_navigation_text_size" tools:ignore="PrivateResource">12sp</dimen>
 
 	<dimen name="px_1">1px</dimen>
 	<dimen name="sp_5">5.0sp</dimen>

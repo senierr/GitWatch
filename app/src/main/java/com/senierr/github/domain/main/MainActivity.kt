@@ -7,14 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.senierr.base.support.ext.click
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.github.R
-import com.senierr.github.domain.issue.IssueFragment
 import com.senierr.github.domain.home.HomeFragment
+import com.senierr.github.domain.issue.IssueFragment
 import com.senierr.github.domain.user.MeFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_main_bottom_navigation.*
 
 /**
  * 主页面
@@ -41,40 +39,36 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         vp_main?.isUserInputEnabled = false
         vp_main?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                onNavigationSelected(position)
+                when (position) {
+                    0 -> bnv_bottom?.selectedItemId = R.id.tab_home
+                    1 -> bnv_bottom?.selectedItemId = R.id.tab_hierarchy
+                    2 -> bnv_bottom?.selectedItemId = R.id.tab_official_accounts
+                    3 -> bnv_bottom?.selectedItemId = R.id.tab_me
+                    else -> bnv_bottom?.selectedItemId = R.id.tab_home
+                }
             }
         })
 
-        ll_navigation_home?.click {
-            vp_main.currentItem = 0
+        bnv_bottom?.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.tab_home -> vp_main.currentItem = 0
+                R.id.tab_hierarchy -> vp_main.currentItem = 1
+                R.id.tab_official_accounts -> vp_main.currentItem = 2
+                R.id.tab_me -> vp_main.currentItem = 3
+            }
+            return@setOnNavigationItemSelectedListener true
         }
-        ll_navigation_issue?.click {
-            vp_main.currentItem = 1
-        }
-        ll_navigation_me?.click {
-            vp_main.currentItem = 2
-        }
-    }
-
-    private fun onNavigationSelected(index: Int) {
-        iv_navigation_home?.isSelected = index == 0
-        tv_navigation_home?.isSelected = index == 0
-
-        iv_navigation_issue?.isSelected = index == 1
-        tv_navigation_issue?.isSelected = index == 1
-
-        iv_navigation_me?.isSelected = index == 2
-        tv_navigation_me?.isSelected = index == 2
     }
 
     private inner class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
-        override fun getItemCount(): Int = 3
+        override fun getItemCount(): Int = 4
 
         override fun createFragment(position: Int): Fragment = when (position) {
             0 -> HomeFragment()
             1 -> IssueFragment()
-            2 -> MeFragment()
+            2 -> IssueFragment()
+            3 -> MeFragment()
             else -> HomeFragment()
         }
     }
