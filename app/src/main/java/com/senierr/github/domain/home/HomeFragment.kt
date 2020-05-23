@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senierr.adapter.internal.MultiTypeAdapter
 import com.senierr.base.support.ui.BaseFragment
+import com.senierr.base.support.utils.ToastUtil
 import com.senierr.github.R
 import com.senierr.github.domain.common.WebViewActivity
 import com.senierr.github.domain.common.wrapper.LoadMoreWrapper
@@ -51,6 +52,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_search) {
         // 列表
         articleWrapper.setOnItemClickListener { _, _, item ->
             context?.let { WebViewActivity.start(it, item.link, item.title) }
+        }
+        articleWrapper.setOnChildClickListener(R.id.iv_favorite) { _, _, _, item ->
+            ToastUtil.showShort(context, "item.collect: ${item.collect}")
         }
         multiTypeAdapter.register(articleWrapper)
         // 加载更多

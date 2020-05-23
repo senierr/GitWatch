@@ -10,6 +10,7 @@ import com.senierr.adapter.internal.ViewHolder
 import com.senierr.adapter.internal.ViewHolderWrapper
 import com.senierr.base.support.utils.ScreenUtil
 import com.senierr.github.R
+import com.senierr.github.utils.DateFormatUtil
 import com.senierr.repository.entity.dto.Article
 
 /**
@@ -46,7 +47,7 @@ class ArticleWrapper : ViewHolderWrapper<Article>(R.layout.item_home_article) {
         } else {
             context.getString(R.string.format_sharer, item.shareUser)
         }
-        tvPublishAt?.text = item.publishTime.toString()
+        tvPublishAt?.text = DateFormatUtil.getNormalDate(context, item.publishTime)
         ivFavorite?.isSelected = item.collect
     }
 

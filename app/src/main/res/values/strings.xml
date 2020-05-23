@@ -31,4 +31,9 @@
 
     <string name="format_author">作者: %1$s</string>
     <string name="format_sharer">分享者: %1$s</string>
+
+    <string name="format_date_recent">刚刚</string>
+    <string name="format_date_minute_ago">%1$d分钟前</string>
+    <string name="format_date_hour_ago">%1$d小时前</string>
+    <string name="format_date_day_ago">%1$d天前</string>
 </resources>

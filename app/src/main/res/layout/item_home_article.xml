@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_white_corner_4dp"
+    android:backgroundTint="@color/color_btn_white"
     android:layout_marginStart="@dimen/dp_4"
     android:layout_marginEnd="@dimen/dp_4"
     android:layout_marginTop="@dimen/dp_4"
@@ -17,7 +18,7 @@
         android:maxLines="2"
         android:textStyle="bold"
         android:textColor="@color/text_title"
-        android:textSize="@dimen/sp_16" />
+        android:textSize="@dimen/sp_15" />
 
     <com.nex3z.flowlayout.FlowLayout
         android:id="@+id/fl_tag"
@@ -58,6 +59,7 @@
         android:tint="@color/app_accent"
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@id/tv_creator"
+        android:padding="@dimen/dp_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

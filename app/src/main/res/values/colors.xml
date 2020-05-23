@@ -5,7 +5,7 @@
     <color name="white">#ffffff</color>
     <!-- 主题色 -->
     <color name="app_theme">#3C3F41</color>
-    <color name="app_theme_dark">#4D3C3F41</color>
+    <color name="app_theme_dark">#27292B</color>
     <color name="app_accent">#499C54</color>
     <color name="app_warn">#ce3d3a</color>
     <!-- 窗口背景色 -->
