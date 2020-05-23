@@ -15,6 +15,10 @@ import com.senierr.github.domain.common.wrapper.LoadMoreWrapper
 import com.senierr.github.domain.official.vm.OfficialViewModel
 import com.senierr.github.domain.official.wrapper.ArticleWrapper
 import com.senierr.github.domain.official.wrapper.ChapterWrapper
+import com.senierr.github.ext.showContentView
+import com.senierr.github.ext.showEmptyView
+import com.senierr.github.ext.showLoadingView
+import com.senierr.github.ext.showNetworkErrorView
 import com.senierr.repository.entity.dto.Article
 import com.senierr.repository.entity.dto.WxChapter
 import kotlinx.android.synthetic.main.fragment_official.*
@@ -109,7 +113,9 @@ class OfficialFragment : BaseFragment(R.layout.fragment_official) {
         })
         officialViewModel.getArticlesFailure.observe(this, Observer {
             if (pageIndex == 1) {
-                msv_state?.showErrorView()
+                msv_state?.showNetworkErrorView {
+                    doRefresh(false)
+                }
             } else {
                 loadMoreWrapper.loadFailure()
             }
@@ -124,7 +130,9 @@ class OfficialFragment : BaseFragment(R.layout.fragment_official) {
         })
         officialViewModel.searchByChapterIdFailure.observe(this, Observer {
             if (pageIndex == 1) {
-                msv_state?.showErrorView()
+                msv_state?.showNetworkErrorView {
+                    doRefresh(true)
+                }
             } else {
                 loadMoreWrapper.loadFailure()
             }

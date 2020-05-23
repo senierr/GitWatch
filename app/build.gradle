@@ -51,6 +51,7 @@ dependencies {
     implementation "androidx.cardview:cardview:$rootProject.ext.cardview"
     implementation "com.youth.banner:banner:$rootProject.ext.banner"
     implementation "com.nex3z:flow-layout:$rootProject.ext.flow_layout"
+    implementation "com.airbnb.android:lottie:$rootProject.ext.lottie"
     // 后台任务
     implementation "androidx.work:work-runtime:$rootProject.ext.worker_manager"
     // 内存泄露

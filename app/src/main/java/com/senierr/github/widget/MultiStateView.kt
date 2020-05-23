@@ -51,22 +51,6 @@ class MultiStateView @JvmOverloads constructor(
             }
         }
 
-    fun showContentView() {
-        viewState = VIEW_STATE_CONTENT
-    }
-
-    fun showLoadingView() {
-        viewState = VIEW_STATE_LOADING
-    }
-
-    fun showErrorView() {
-        viewState = VIEW_STATE_ERROR
-    }
-
-    fun showEmptyView() {
-        viewState = VIEW_STATE_EMPTY
-    }
-
     init {
         val inflater = LayoutInflater.from(getContext())
         val a = getContext().obtainStyledAttributes(attrs, R.styleable.MultiStateView)

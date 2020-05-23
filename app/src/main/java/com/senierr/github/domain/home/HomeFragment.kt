@@ -13,6 +13,10 @@ import com.senierr.github.domain.common.wrapper.LoadMoreWrapper
 import com.senierr.github.domain.home.vm.HomeViewModel
 import com.senierr.github.domain.home.wrapper.ArticleWrapper
 import com.senierr.github.domain.home.wrapper.BannerWrapper
+import com.senierr.github.ext.showContentView
+import com.senierr.github.ext.showEmptyView
+import com.senierr.github.ext.showLoadingView
+import com.senierr.github.ext.showNetworkErrorView
 import com.senierr.repository.entity.dto.Article
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -79,7 +83,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             renderRefreshHome(it)
         })
         searchViewModel.refreshHomeFailure.observe(this, Observer {
-            msv_state?.showErrorView()
+            msv_state?.showNetworkErrorView {
+                msv_state?.showLoadingView()
+                page = 0
+                searchViewModel.refreshHome(page)
+            }
         })
     }
 
