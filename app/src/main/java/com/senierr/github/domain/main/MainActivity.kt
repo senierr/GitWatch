@@ -3,10 +3,15 @@ package com.senierr.github.domain.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.github.R
 import com.senierr.github.domain.home.HomeFragment
@@ -59,6 +64,13 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             }
             return@setOnNavigationItemSelectedListener true
         }
+
+        // TODO 测试徽章功能
+        val badgeDrawable = bnv_bottom?.getOrCreateBadge(R.id.tab_me)
+        badgeDrawable?.badgeTextColor = ContextCompat.getColor(this, R.color.text_white)
+        badgeDrawable?.backgroundColor = ContextCompat.getColor(this, R.color.app_warn)
+        badgeDrawable?.maxCharacterCount = 2
+        badgeDrawable?.number = 999
     }
 
     private inner class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
