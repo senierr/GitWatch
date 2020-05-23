@@ -1,6 +1,7 @@
-package com.senierr.github.domain.home.wrapper
+package com.senierr.github.domain.official.wrapper
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,7 +16,7 @@ import com.senierr.github.utils.DateFormatUtil
 import com.senierr.repository.entity.dto.Article
 
 /**
- * 首页文章适配器
+ * 文章适配器
  *
  * @author zhouchunjie
  * @date 2020/5/10

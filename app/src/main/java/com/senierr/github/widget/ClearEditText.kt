@@ -27,7 +27,6 @@ class ClearEditText : AppCompatEditText {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     private var mClearDrawable: Drawable? = null
-    private var hasFocus: Boolean = false
 
     init {
         mClearDrawable = compoundDrawables[2]
@@ -40,19 +39,9 @@ class ClearEditText : AppCompatEditText {
         }
 
         setClearIconVisible(false)
-        setOnFocusChangeListener { _, b ->
-            this.hasFocus = b
-            if (b) {
-                setClearIconVisible(text.isNullOrEmpty())
-            } else {
-                setClearIconVisible(false)
-            }
-        }
         addTextChangedListener(object : EditTextWatcher() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(hasFocus){
-                    setClearIconVisible(text.isNullOrEmpty())
-                }
+                setClearIconVisible(!text.isNullOrEmpty())
             }
         })
     }

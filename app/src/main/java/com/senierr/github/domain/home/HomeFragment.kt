@@ -14,15 +14,15 @@ import com.senierr.github.domain.home.vm.HomeViewModel
 import com.senierr.github.domain.home.wrapper.ArticleWrapper
 import com.senierr.github.domain.home.wrapper.BannerWrapper
 import com.senierr.repository.entity.dto.Article
-import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
- * 事件页面
+ * 首页
  *
  * @author zhouchunjie
  * @date 2019/7/8 21:21
  */
-class HomeFragment : BaseFragment(R.layout.fragment_search) {
+class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val multiTypeAdapter = MultiTypeAdapter()
     private val bannerWrapper = BannerWrapper()
@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_search) {
 
     private lateinit var searchViewModel: HomeViewModel
 
-    private var page = 1
+    private var page = 0
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,7 +43,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_search) {
 
     private fun initView() {
         srl_refresh?.setOnRefreshListener {
-            page = 1
+            page = 0
             searchViewModel.refreshHome(page)
         }
         rv_list?.layoutManager = LinearLayoutManager(context)
@@ -69,14 +69,14 @@ class HomeFragment : BaseFragment(R.layout.fragment_search) {
         searchViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         searchViewModel.loadMoreArticleSuccess.observe(this, Observer {
-            loadMoreArticles(it)
+            renderLoadMoreArticles(it)
         })
         searchViewModel.loadMoreArticleFailure.observe(this, Observer {
             loadMoreWrapper.loadFailure()
         })
 
         searchViewModel.refreshHomeSuccess.observe(this, Observer {
-            refreshHome(it)
+            renderRefreshHome(it)
         })
         searchViewModel.refreshHomeFailure.observe(this, Observer {
             msv_state?.showErrorView()
@@ -86,7 +86,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_search) {
     /**
      * 刷新首页
      */
-    private fun refreshHome(refreshResult: HomeViewModel.RefreshResult) {
+    private fun renderRefreshHome(refreshResult: HomeViewModel.RefreshResult) {
         srl_refresh?.isRefreshing = false
         if (refreshResult.isEmpty()) {
             msv_state?.showEmptyView()
@@ -105,7 +105,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_search) {
     /**
      * 加载更多文章
      */
-    private fun loadMoreArticles(result: MutableList<Article>) {
+    private fun renderLoadMoreArticles(result: MutableList<Article>) {
         if (result.isEmpty()) {
             loadMoreWrapper.loadNoMore()
         } else {

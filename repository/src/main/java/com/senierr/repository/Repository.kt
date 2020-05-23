@@ -7,9 +7,11 @@ import com.senierr.repository.remote.RemoteManager
 import com.senierr.repository.service.api.IArticleService
 import com.senierr.repository.service.api.IBannerService
 import com.senierr.repository.service.api.IUserService
+import com.senierr.repository.service.api.IWxArticleService
 import com.senierr.repository.service.impl.ArticleService
 import com.senierr.repository.service.impl.BannerService
 import com.senierr.repository.service.impl.UserService
+import com.senierr.repository.service.impl.WxArticleService
 import com.senierr.repository.sp.SPManager
 
 /**
@@ -37,6 +39,7 @@ object Repository {
         IUserService::class.java -> UserService() as T
         IArticleService::class.java -> ArticleService() as T
         IBannerService::class.java -> BannerService() as T
+        IWxArticleService::class.java -> WxArticleService() as T
         else -> throw IllegalArgumentException("Can not find this type of the service!")
     }
 }

@@ -10,7 +10,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.github.R
 import com.senierr.github.domain.home.HomeFragment
-import com.senierr.github.domain.issue.IssueFragment
+import com.senierr.github.domain.official.OfficialFragment
+import com.senierr.github.domain.project.ProjectFragment
 import com.senierr.github.domain.user.MeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -41,8 +42,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             override fun onPageSelected(position: Int) {
                 when (position) {
                     0 -> bnv_bottom?.selectedItemId = R.id.tab_home
-                    1 -> bnv_bottom?.selectedItemId = R.id.tab_hierarchy
-                    2 -> bnv_bottom?.selectedItemId = R.id.tab_official_accounts
+                    1 -> bnv_bottom?.selectedItemId = R.id.tab_official_accounts
+                    2 -> bnv_bottom?.selectedItemId = R.id.tab_project
                     3 -> bnv_bottom?.selectedItemId = R.id.tab_me
                     else -> bnv_bottom?.selectedItemId = R.id.tab_home
                 }
@@ -52,8 +53,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         bnv_bottom?.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.tab_home -> vp_main.currentItem = 0
-                R.id.tab_hierarchy -> vp_main.currentItem = 1
-                R.id.tab_official_accounts -> vp_main.currentItem = 2
+                R.id.tab_official_accounts -> vp_main.currentItem = 1
+                R.id.tab_project -> vp_main.currentItem = 2
                 R.id.tab_me -> vp_main.currentItem = 3
             }
             return@setOnNavigationItemSelectedListener true
@@ -66,8 +67,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
         override fun createFragment(position: Int): Fragment = when (position) {
             0 -> HomeFragment()
-            1 -> IssueFragment()
-            2 -> IssueFragment()
+            1 -> OfficialFragment()
+            2 -> ProjectFragment()
             3 -> MeFragment()
             else -> HomeFragment()
         }
