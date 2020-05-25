@@ -5,12 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.senierr.repository.Repository
 import com.senierr.repository.entity.dto.*
-import com.senierr.repository.service.api.IUserService
 import com.senierr.repository.service.api.IWxArticleService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * 公众号
@@ -20,7 +16,7 @@ import kotlinx.coroutines.withContext
  */
 class OfficialViewModel : ViewModel() {
 
-    val getChaptersSuccess = MutableLiveData<MutableList<WxChapter>>()
+    val getChaptersSuccess = MutableLiveData<MutableList<Chapter>>()
     val getChaptersFailure = MutableLiveData<Exception>()
 
     val getArticlesSuccess = MutableLiveData<PageResult<Article>>()

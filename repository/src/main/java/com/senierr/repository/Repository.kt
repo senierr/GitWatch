@@ -4,14 +4,8 @@ import android.content.Context
 import com.senierr.repository.db.DatabaseManager
 import com.senierr.repository.disk.DiskManager
 import com.senierr.repository.remote.RemoteManager
-import com.senierr.repository.service.api.IArticleService
-import com.senierr.repository.service.api.IBannerService
-import com.senierr.repository.service.api.IUserService
-import com.senierr.repository.service.api.IWxArticleService
-import com.senierr.repository.service.impl.ArticleService
-import com.senierr.repository.service.impl.BannerService
-import com.senierr.repository.service.impl.UserService
-import com.senierr.repository.service.impl.WxArticleService
+import com.senierr.repository.service.api.*
+import com.senierr.repository.service.impl.*
 import com.senierr.repository.sp.SPManager
 
 /**
@@ -40,6 +34,7 @@ object Repository {
         IArticleService::class.java -> ArticleService() as T
         IBannerService::class.java -> BannerService() as T
         IWxArticleService::class.java -> WxArticleService() as T
+        IProjectService::class.java -> ProjectService() as T
         else -> throw IllegalArgumentException("Can not find this type of the service!")
     }
 }

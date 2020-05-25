@@ -1,12 +1,12 @@
 package com.senierr.repository.entity.dto
 
 /**
- * 公众号分类
+ * 分类
  *
  * @author zhouchunjie
  * @date 2020/5/23 13:18
  */
-data class WxChapter(
+data class Chapter(
     var courseId: Long = 0,
     var id: Long = 0,
     var name: String = "",

@@ -3,7 +3,7 @@ package com.senierr.repository.remote.api
 import com.senierr.repository.entity.dto.Article
 import com.senierr.repository.entity.dto.HttpResponse
 import com.senierr.repository.entity.dto.PageResult
-import com.senierr.repository.entity.dto.WxChapter
+import com.senierr.repository.entity.dto.Chapter
 import retrofit2.http.*
 
 /**
@@ -18,7 +18,7 @@ interface WxArticleApi {
      * 获取公众号列表
      */
     @GET("wxarticle/chapters/json")
-    suspend fun getChapters(): HttpResponse<MutableList<WxChapter>>
+    suspend fun getChapters(): HttpResponse<MutableList<Chapter>>
 
     /**
      * 获取某公众号历史数据

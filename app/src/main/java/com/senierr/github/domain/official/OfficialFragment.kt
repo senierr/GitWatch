@@ -20,7 +20,7 @@ import com.senierr.github.ext.showEmptyView
 import com.senierr.github.ext.showLoadingView
 import com.senierr.github.ext.showNetworkErrorView
 import com.senierr.repository.entity.dto.Article
-import com.senierr.repository.entity.dto.WxChapter
+import com.senierr.repository.entity.dto.Chapter
 import kotlinx.android.synthetic.main.fragment_official.*
 import kotlinx.android.synthetic.main.fragment_official.msv_state
 import kotlinx.android.synthetic.main.fragment_official.rv_list
@@ -43,7 +43,7 @@ class OfficialFragment : BaseFragment(R.layout.fragment_official) {
     private lateinit var officialViewModel: OfficialViewModel
 
     // 当前选中的公众号
-    private var currentChapter: WxChapter? = null
+    private var currentChapter: Chapter? = null
     // 文章列表页索引
     private var pageIndex = 1
     // 是否搜索模式

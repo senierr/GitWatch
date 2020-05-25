@@ -1,4 +1,4 @@
-package com.senierr.github.domain.official.wrapper
+package com.senierr.github.domain.project.wrapper
 
 import android.widget.TextView
 import com.senierr.adapter.internal.ViewHolder
@@ -7,12 +7,12 @@ import com.senierr.github.R
 import com.senierr.repository.entity.dto.Chapter
 
 /**
- * 公众号适配器
+ * 分类适配器
  *
  * @author zhouchunjie
  * @date 2020/5/10
  */
-class ChapterWrapper : ViewHolderWrapper<Chapter>(R.layout.item_official_chapter) {
+class ChapterWrapper : ViewHolderWrapper<Chapter>(R.layout.item_project_chapter) {
 
     private var lastSelectedPosition: Int = -1
     private var currentSelectedPosition: Int = 0
@@ -21,13 +21,7 @@ class ChapterWrapper : ViewHolderWrapper<Chapter>(R.layout.item_official_chapter
         val tvName = holder.findView<TextView>(R.id.tv_name)
 
         tvName?.text = item.name
-        if (currentSelectedPosition == holder.layoutPosition) {
-            tvName?.isSelected = true
-            tvName?.setBackgroundResource(R.drawable.shape_shapter_bg)
-        } else {
-            tvName?.isSelected = false
-            tvName?.background = null
-        }
+        tvName?.isSelected = currentSelectedPosition == holder.layoutPosition
     }
 
     /**

@@ -2,7 +2,7 @@ package com.senierr.repository.service.impl
 
 import com.senierr.repository.entity.dto.Article
 import com.senierr.repository.entity.dto.PageResult
-import com.senierr.repository.entity.dto.WxChapter
+import com.senierr.repository.entity.dto.Chapter
 import com.senierr.repository.remote.RemoteManager
 import com.senierr.repository.remote.api.WxArticleApi
 import com.senierr.repository.service.api.IWxArticleService
@@ -20,7 +20,7 @@ class WxArticleService : IWxArticleService {
         RemoteManager.getNormalHttp().create(WxArticleApi::class.java)
     }
 
-    override suspend fun getChapters(): MutableList<WxChapter> {
+    override suspend fun getChapters(): MutableList<Chapter> {
         return withContext(Dispatchers.IO) {
             val response = wxArticleApi.getChapters()
             if (!response.isSuccessful()) throw response.getException()

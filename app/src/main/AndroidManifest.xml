@@ -37,6 +37,10 @@
 
         <activity android:name=".domain.common.WebViewActivity" />
 
+        <activity
+            android:theme="@style/AppTheme.FullScreenTheme.Black"
+            android:name=".domain.common.ImagePreviewActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
