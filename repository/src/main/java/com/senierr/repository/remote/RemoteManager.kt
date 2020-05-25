@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 object RemoteManager {
 
+    private lateinit var okHttpClient: OkHttpClient
     private lateinit var retrofit: Retrofit
     private lateinit var cookieStore: CookieStore
 
@@ -31,13 +32,16 @@ object RemoteManager {
             writeTimeout(Constant.TIMEOUT, TimeUnit.MILLISECONDS)
             cookieJar(CookieJarImpl(cookieStore))
         }
+        okHttpClient = okHttpClientBuilder.build()
 
         retrofit = Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClientBuilder.build())
+            .client(okHttpClient)
             .build()
     }
+
+    fun getOkHttpClient(): OkHttpClient = okHttpClient
 
     fun getNormalHttp(): Retrofit = retrofit
 

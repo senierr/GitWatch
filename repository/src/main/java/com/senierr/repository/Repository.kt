@@ -35,6 +35,7 @@ object Repository {
         IBannerService::class.java -> BannerService() as T
         IWxArticleService::class.java -> WxArticleService() as T
         IProjectService::class.java -> ProjectService() as T
+        ICommonService::class.java -> CommonService() as T
         else -> throw IllegalArgumentException("Can not find this type of the service!")
     }
 }

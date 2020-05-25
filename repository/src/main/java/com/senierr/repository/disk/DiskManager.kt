@@ -15,6 +15,9 @@ object DiskManager {
 
     private var diskLruCacheUtil: DiskLruCacheUtil? = null
 
+    private lateinit var cacheDir: File
+    private lateinit var downloadDir: File
+
     /**
      * 初始化
      */
@@ -23,6 +26,9 @@ object DiskManager {
         val destFile = File(destDir, "diskLruCache")
         if (!destFile.exists()) destFile.mkdirs()
         diskLruCacheUtil = DiskLruCacheUtil.getInstance(destFile)
+
+        cacheDir = StorageUtil.getCacheDir(context)
+        downloadDir = StorageUtil.getDownloadDir(context)
     }
 
     /**
@@ -35,14 +41,10 @@ object DiskManager {
     /**
      * 获取磁盘缓存目录
      */
-    fun getDiskCacheDir(context: Context): File {
-        return StorageUtil.getCacheDir(context)
-    }
+    fun getDiskCacheDir(context: Context): File = cacheDir
 
     /**
      * 获取文件下载目录
      */
-    fun getDownloadDir(context: Context): File {
-        return StorageUtil.getDownloadDir(context)
-    }
+    fun getDownloadDir(): File = downloadDir
 }
