@@ -5,10 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bm.library.PhotoView
 import com.senierr.adapter.internal.ViewHolder
+import com.senierr.base.support.ext.click
 import com.senierr.base.support.ui.BaseActivity
+import com.senierr.base.support.utils.LogUtil
 import com.senierr.github.R
 import com.senierr.github.domain.common.vm.DownloadViewModel
 import com.senierr.github.ext.show
@@ -43,9 +46,8 @@ class ImagePreviewActivity : BaseActivity(R.layout.activity_image_preview) {
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             val holder = ViewHolder.create(container, R.layout.item_image_preview)
             val pvPreview = holder.findView<PhotoView>(R.id.pv_preview)
-            pvPreview?.setOnLongClickListener {
-                downloadViewModel.download(images[position], "image")
-                return@setOnLongClickListener true
+            pvPreview?.click {
+                downloadViewModel.download(images[position], "${System.currentTimeMillis()}.jpg")
             }
 
             pvPreview?.enable()
@@ -64,7 +66,7 @@ class ImagePreviewActivity : BaseActivity(R.layout.activity_image_preview) {
         super.onCreate(savedInstanceState)
         initParams()
         initView()
-        downloadViewModel = ViewModelProvider(this).get(DownloadViewModel::class.java)
+        initViewModel()
     }
 
     private fun initParams() {
@@ -77,6 +79,15 @@ class ImagePreviewActivity : BaseActivity(R.layout.activity_image_preview) {
     }
 
     private fun initViewModel() {
-        
+        downloadViewModel = ViewModelProvider(this).get(DownloadViewModel::class.java)
+        downloadViewModel.downloadProgress.observe(this, Observer {
+            LogUtil.logE("progress: ${it.percent}")
+        })
+        downloadViewModel.downloadSuccess.observe(this, Observer {
+            LogUtil.logE("success: ${it.absolutePath}")
+        })
+        downloadViewModel.downloadFailure.observe(this, Observer {
+            LogUtil.logE("failure: ${it.message}")
+        })
     }
 }

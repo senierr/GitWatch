@@ -13,7 +13,7 @@ interface ICommonService {
     /**
      * 下载
      */
-    suspend fun download(
+    suspend fun downloadFile(
         url: String,
         destName: String,
         listener: (totalSize: Long, currentSize: Long, percent: Int) -> Unit

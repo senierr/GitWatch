@@ -3,6 +3,7 @@ package com.senierr.github.domain.common.vm
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.senierr.base.support.utils.LogUtil
 import com.senierr.repository.Repository
 import com.senierr.repository.service.api.ICommonService
 import kotlinx.coroutines.launch
@@ -31,10 +32,9 @@ class DownloadViewModel : ViewModel() {
     fun download(url: String, destName: String) {
         viewModelScope.launch {
             try {
-                val destFile = commonService.download(url, destName) { totalSize, currentSize, percent ->
-                    viewModelScope.launch {
-                        downloadProgress.value = Progress(totalSize, currentSize, percent)
-                    }
+                val destFile = commonService.downloadFile(url, destName) { totalSize, currentSize, percent ->
+                    // 此回调线程为异步线程，注意转为主线程
+                    downloadProgress.postValue(Progress(totalSize, currentSize, percent))
                 }
                 downloadSuccess.value = destFile
             } catch (e: Exception) {
