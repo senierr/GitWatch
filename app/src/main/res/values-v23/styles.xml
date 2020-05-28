@@ -1,0 +1,9 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 登录页主题 -->
+    <style name="AppTheme.LoginTheme">
+        <item name="android:windowBackground">@color/window_content</item>
+        <item name="android:statusBarColor">@color/window_content</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

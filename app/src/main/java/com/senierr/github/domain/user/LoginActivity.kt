@@ -3,17 +3,19 @@ package com.senierr.github.domain.user
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.senierr.base.support.ext.click
 import com.senierr.base.support.ui.BaseActivity
 import com.senierr.base.support.utils.KeyboardUtil
 import com.senierr.base.support.utils.ToastUtil
 import com.senierr.github.R
 import com.senierr.github.domain.user.vm.LoginViewModel
-import com.senierr.repository.entity.dto.HttpException
 import com.senierr.github.widget.CircularAnim
+import com.senierr.repository.entity.dto.HttpException
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -43,6 +45,8 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
         }
     }
 
+    private lateinit var loadingDialog: AlertDialog
+
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,27 +60,19 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
     }
 
     private fun initView() {
-        setSupportActionBar(tb_top)
-        tb_top?.setNavigationOnClickListener {
-            onBackPressed()
-        }
+        btn_close?.click { onBackPressed() }
+        btn_login?.click { login() }
 
-        btn_visibility?.click {
-            it.isSelected = !it.isSelected
-            et_password.setPasswordVisible(it.isSelected)
-        }
-
-        btn_login?.click {
-            login()
-        }
-
-        et_account?.setText("senierr")
+        loadingDialog = MaterialAlertDialogBuilder(this)
+            .setView(R.layout.layout_status_loading)
+            .create()
     }
 
     private fun initViewModel() {
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         loginViewModel.loginSuccess.observe(this, Observer {
+            loadingDialog.dismiss()
             CircularAnim().fullActivity(this, btn_login)
                 .colorOrImageRes(R.color.app_theme)
                 .go(object : CircularAnim.OnAnimationEndListener {
@@ -87,38 +83,53 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
         })
 
         loginViewModel.loginFailure.observe(this, Observer {
-//            if (it is HttpException) {
-//                ToastUtil.showLong(this, it.message)
-//            } else {
-//                ToastUtil.showLong(this, R.string.network_error)
-//            }
-            btn_login?.isClickable = true
-            btn_login?.setText(R.string.login)
+            loadingDialog.dismiss()
+            if (it is HttpException) {
+                ToastUtil.showLong(this, it.errorMsg)
+            } else {
+                ToastUtil.showLong(this, R.string.network_error)
+            }
         })
     }
 
+    /**
+     * 验证账号合法性
+     */
+    private fun verifyAccount(account: String?): Boolean {
+        if (account.isNullOrBlank()) {
+            til_account?.isErrorEnabled = true
+            til_account?.error = getString(R.string.account_empty)
+            return false
+        }
+        til_account?.isErrorEnabled = false
+        return true
+    }
+
+    /**
+     * 验证密码合法性
+     */
+    private fun verifyPassword(password: String?): Boolean {
+        if (password.isNullOrBlank()) {
+            til_password?.isErrorEnabled = true
+            til_password?.error = getString(R.string.password_empty)
+            return false
+        }
+        til_password?.isErrorEnabled = false
+        return true
+    }
+
     private fun login() {
-        btn_login?.isClickable = false
-        btn_login?.setText(R.string.logging)
         KeyboardUtil.hideSoftInput(this)
 
         val account = et_account?.text?.toString()
         val password = et_password?.text?.toString()
 
-        if (account.isNullOrBlank()) {
-            ToastUtil.showShort(this, R.string.account_empty)
-            btn_login?.isClickable = true
-            btn_login?.setText(R.string.login)
-            return
+        if (verifyAccount(account) && verifyPassword(password)) {
+            if (account != null && password != null) {
+                loadingDialog.show()
+                loginViewModel.login(account, password)
+            }
         }
-        if (password.isNullOrBlank()) {
-            ToastUtil.showShort(this, R.string.password_empty)
-            btn_login?.isClickable = true
-            btn_login?.setText(R.string.login)
-            return
-        }
-
-        loginViewModel.login(account, password)
     }
 
     /**

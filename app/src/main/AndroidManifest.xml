@@ -33,7 +33,9 @@
             android:name=".domain.main.MainActivity"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".domain.user.LoginActivity" />
+        <activity
+            android:theme="@style/AppTheme.LoginTheme"
+            android:name=".domain.user.LoginActivity" />
 
         <activity android:name=".domain.common.WebViewActivity" />
 

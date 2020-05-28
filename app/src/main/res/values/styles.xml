@@ -72,7 +72,7 @@
         <item name="android:minHeight">@dimen/dp_0</item>
         <item name="android:insetTop">@dimen/dp_0</item>
         <item name="android:insetBottom">@dimen/dp_0</item>
-        <item name="android:background">@color/transparent</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 
     <!-- 黑色背景主题 -->
@@ -95,5 +95,11 @@
     <style name="AppTheme.SplashTheme">
         <item name="android:windowBackground">@drawable/shape_splash</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- 登录页主题 -->
+    <style name="AppTheme.LoginTheme">
+        <item name="android:windowBackground">@color/window_content</item>
+        <item name="android:statusBarColor">@color/window_content</item>
     </style>
 </resources>

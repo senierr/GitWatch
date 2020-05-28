@@ -23,6 +23,7 @@
     <string name="password_empty">请输入密码</string>
     <string name="login">登录</string>
     <string name="logging">登录中&#8230;</string>
+    <string name="register">注册</string>
 
     <string name="home">首页</string>
     <string name="project">项目</string>
