@@ -20,12 +20,36 @@ android {
         targetCompatibility rootProject.ext.javaVersion
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            storeFile file("../keystore/keystore.jks")
+            storePassword "4366460"
+            keyAlias "key01"
+            keyPassword "4366460"
+        }
+    }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        release {
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "app_v${defaultConfig.versionName}_debug.apk"
+        }
+    }
+
 }
 
 dependencies {
