@@ -17,6 +17,7 @@ import com.senierr.github.domain.user.vm.LoginViewModel
 import com.senierr.github.widget.CircularAnim
 import com.senierr.repository.entity.dto.HttpException
 import kotlinx.android.synthetic.main.activity_login.*
+import java.lang.Exception
 
 /**
  * 登录页面
@@ -61,7 +62,7 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
 
     private fun initView() {
         btn_close?.click { onBackPressed() }
-        btn_login?.click { login() }
+        btn_login?.click { doLogin() }
 
         loadingDialog = MaterialAlertDialogBuilder(this)
             .setView(R.layout.layout_status_loading)
@@ -71,25 +72,9 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
     private fun initViewModel() {
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        loginViewModel.loginSuccess.observe(this, Observer {
-            loadingDialog.dismiss()
-            CircularAnim().fullActivity(this, btn_login)
-                .colorOrImageRes(R.color.app_theme)
-                .go(object : CircularAnim.OnAnimationEndListener {
-                    override fun onAnimationEnd() {
-                        doFinish(true)
-                    }
-                })
-        })
-
-        loginViewModel.loginFailure.observe(this, Observer {
-            loadingDialog.dismiss()
-            if (it is HttpException) {
-                ToastUtil.showLong(this, it.errorMsg)
-            } else {
-                ToastUtil.showLong(this, R.string.network_error)
-            }
-        })
+        loginViewModel.loginResult.observe(this,
+            { showLoginSuccess() },
+            { showLoginFailure(it) })
     }
 
     /**
@@ -118,7 +103,10 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
         return true
     }
 
-    private fun login() {
+    /**
+     * 登录
+     */
+    private fun doLogin() {
         KeyboardUtil.hideSoftInput(this)
 
         val account = et_account?.text?.toString()
@@ -129,6 +117,32 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
                 loadingDialog.show()
                 loginViewModel.login(account, password)
             }
+        }
+    }
+
+    /**
+     * 展现登录成功
+     */
+    private fun showLoginSuccess() {
+        loadingDialog.dismiss()
+        CircularAnim().fullActivity(this, btn_login)
+            .colorOrImageRes(R.color.app_theme)
+            .go(object : CircularAnim.OnAnimationEndListener {
+                override fun onAnimationEnd() {
+                    doFinish(true)
+                }
+            })
+    }
+
+    /**
+     * 展现登录失败
+     */
+    private fun showLoginFailure(exception: Exception) {
+        loadingDialog.dismiss()
+        if (exception is HttpException) {
+            ToastUtil.showLong(this, exception.errorMsg)
+        } else {
+            ToastUtil.showLong(this, R.string.network_error)
         }
     }
 

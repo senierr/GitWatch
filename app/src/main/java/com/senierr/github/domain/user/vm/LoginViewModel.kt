@@ -1,16 +1,12 @@
 package com.senierr.github.domain.user.vm
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.senierr.github.domain.common.vm.StatefulLiveData
 import com.senierr.repository.Repository
-import com.senierr.repository.entity.dto.HttpResponse
-import com.senierr.repository.entity.dto.Token
 import com.senierr.repository.entity.dto.UserInfo
 import com.senierr.repository.service.api.IUserService
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * 登录
@@ -20,8 +16,7 @@ import kotlinx.coroutines.withContext
  */
 class LoginViewModel : ViewModel() {
 
-    val loginSuccess = MutableLiveData<UserInfo>()
-    val loginFailure = MutableLiveData<Exception>()
+    val loginResult = StatefulLiveData<UserInfo>()
 
     private val userService = Repository.getService<IUserService>()
 
@@ -29,9 +24,9 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val userInfo = userService.login(account, password)
-                loginSuccess.value = userInfo
+                loginResult.setValue(userInfo)
             } catch (e: Exception) {
-                loginFailure.value = e
+                loginResult.setException(e)
             }
         }
     }

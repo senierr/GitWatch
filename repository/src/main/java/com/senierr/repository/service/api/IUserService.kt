@@ -1,5 +1,6 @@
 package com.senierr.repository.service.api
 
+import com.senierr.repository.entity.dto.HttpException
 import com.senierr.repository.entity.dto.UserInfo
 
 /**
@@ -15,6 +16,7 @@ interface IUserService {
      *
      * @param username 用户名
      * @param password 密码
+     * @throws HttpException -1001 登录失效
      */
     suspend fun login(username: String, password: String): UserInfo
 
